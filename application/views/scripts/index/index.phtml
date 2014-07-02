@@ -1,0 +1,77 @@
+<?php
+$categories = $this->categories;
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="jumbotrons">
+                <img src="/images/content/samplecontent-img.jpg"/>
+            </div>
+            <div class="captionss">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12">
+            <form class="form-inline nowrap" role="form" method="post" action="/search/search">
+                <input type="text" class="form-control search-home" name="search_term" id="emailInput"> <button type="submit" class="btn btn-default search-home home-button">
+                    <img class="home-search-icon" src="/images/arrows/search.png" />
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="span-full">
+                <a href="/filter.php" class="btn btn-default"> Show filters</a>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->
+
+<div class="container">
+    <div class="lessons-wrap">
+        <div class="class-thumbs-wrap">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="coursthumbs">
+                        <ul class="nopadding nomargin listnone listing-view">
+                          
+                             <?php foreach ($categories as $category) { ?>
+                            <li class="less-listing course-thumbs cats">
+                                <a href=""></a>
+                                <div class="bg-arrow">
+                                    <div class="row">
+                                        <div class="col-xs-5 col-sm-5">
+                                            <div class="cat-image">
+                                                <a href="/articles/category/<?php echo $category->TE_category_slug ?>"><img src="/images/content/samplecat.jpg" alt="category"/></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7 col-sm-7">
+                                            <div class="less-title">
+
+                                                <a href="/articles/category/<?php echo $category->TE_category_slug ?>"> <?php print_r($category->TE_categories); ?></a>
+
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                  
+                             <?php } ?>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12">
+                    <p class="center nomargin"> <button type="submit" class="btn btn-default long-btn"><img class="home-search-icon" src="/images/arrows/more.png" /> Show more</button></p>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div> <!-- /wrap -->

@@ -1,0 +1,50 @@
+<?php
+$results = $this->results;
+
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <h1>Search results for <span class="italisize"> <?php echo $this->keywords; ?></span></h1>
+            <form class="form-inline nowrap" role="form" method="post" action="/search/search">
+                <input type="text" class="form-control search-home" value="<?php echo $this->keywords; ?>" name="search_term" id="emailInput"> <button type="submit" class="btn btn-default search-home home-button">
+                    <img class="home-search-icon" src="/images/arrows/search.png" />
+                </button>
+            </form>
+        </div>
+    </div>
+</div> <!-- /container -->
+<div class="container">
+    <div class="lessons-wrap">
+        <div class="class-thumbs-wrap">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <h2>Articles</h2>
+                    <div class="course-thumbs">
+                        <?php if(count($results)){?>
+                     <?php   foreach ($results as $article) { ?>
+ 
+                        <div class="content-text">
+                            <h2></h2>
+                            <p>
+                                <a href="/article/<?php echo $article->TE_day ?>"><?php echo $article->TE_title_en ?></a>	
+                            </p>
+
+                        </div>
+                        <?php }}else{?>
+                        <p>No results found for your search</p>
+                        <?php } ?>
+                       
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div> <!-- /wrap -->
+

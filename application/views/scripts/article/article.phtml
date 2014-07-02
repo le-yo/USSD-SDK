@@ -1,0 +1,58 @@
+<?php 
+$article=$this->article;
+?>
+	    <div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+			    	<h1 class="center"><?php echo $article->TE_title_en ?></h1>
+			    	<ol class="breadcrumb">
+		                <li><a href="/">Home</a></li>
+		                <li><a href="/articles">Articles</a></li>
+		            </ol>
+					
+				</div>
+			</div>
+	    </div> <!-- /container -->
+	    <div class="container">
+	    	<div class="lessons-wrap">
+	    		<div class="class-thumbs-wrap">
+			    	<div class="row">
+			    		<div class="col-xs-12 col-sm-12">
+			    			<div class="course-thumbs">
+			    				<div class="lesson-img-wrap">
+			    					<img src="/images/content/samplecontent-img.jpg" />
+			    				</div>
+			    			</div>
+			    			<div class="course-thumbs">
+			    				<div class="content-text">
+			    					<h2></h2>
+			    					<p>
+			    					<?php echo $article->Title_Description_en ?>	
+			    					</p>
+			    	
+			    				</div>
+			    				<div class="content-share">
+			    					<!-- AddThis Button BEGIN -->
+									<div class="addthis_toolbox addthis_default_style ">
+									<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+									<a class="addthis_button_tweet"></a>
+									<a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+									<a class="addthis_counter addthis_pill_style"></a>
+									</div>
+									<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-509210fe2969bead"></script>
+									<!-- AddThis Button END -->
+			    				</div>
+			    				
+			    			</div>
+			    		</div>
+			    		
+			    		
+			    	</div>
+			    	
+			    </div>
+	    	</div>
+	    </div>
+  </div> <!-- /wrap -->
+ 
+   
