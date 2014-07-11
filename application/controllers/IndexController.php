@@ -68,13 +68,13 @@ class IndexController extends Zend_Controller_Action {
 			$session = $user->session;
 			switch ($session) {
 				case 0:
-					$output = $this->mainMenu($no);
+					$output = $this->mainMenu($user,$no);
 					break;
 				case 1:
-					$output = $this->ussdProgress();
+					$output = $this->ussdProgress($user,$message);
 					break;
 				case 2:
-					$output = $this->ussdConfirmation();
+					$output = $this->ussdConfirmation($user);
 					break;
 				
 				default:
@@ -87,7 +87,34 @@ class IndexController extends Zend_Controller_Action {
 		}
 		
 }
-	public function mainMenu($no){
+
+	public function ussdConfirmation($user,$message = 1){
+		//we need to update the status of the responses confirmed to 1
+		$Response_Model = new Model_Response();
+		
+		$result = $Response_Model -> confirmResponses($user);
+		
+		//set user session to zero
+		
+		$userModel = new Model_User();
+		
+		//$result = $userModel -> updateUserSession($user['id'],0);
+		//update user steps
+		//$result = $userModel -> updateUserMenuStep($user['id'],0);
+		
+		//update user
+		$data = array('session' => 0,'step' => 0, 'menu_item_id' => 0 );
+		
+		$result = $userModel -> updateUserData($data,$user['id']);
+		
+				
+		
+		return "Confirmed successfully";
+			
+		
+		
+	}
+	public function mainMenu($user,$no){
 			$menuModel = new Model_Menu();
 			
 			$menu = $menuModel -> getMenu(1);
@@ -98,8 +125,14 @@ class IndexController extends Zend_Controller_Action {
 			//build up the options
 			$menuItemsModel = new Model_MenuItems();
 			$menuOptions = $menuItemsModel -> getMenuOptions($menu_id);
-				
-			$result = $userModel -> updateUser(1,$no);
+			$userModel = new Model_User();
+			
+			$data = array('session' => 1,'step' => 0, 'menu_item_id' => 1 );
+		
+			
+			$result = $userModel -> updateUserData($data,$user['id']);
+			
+			//$result = $userModel -> updateUserSession($user['id'],1);
 			
 			return $description.PHP_EOL.$menuOptions;
 			//exit;
@@ -107,20 +140,15 @@ class IndexController extends Zend_Controller_Action {
 		
 	}
 	
-	public function ussdProgress(){
-		$menu_item_id = $user->menu_item_id;
-		$step = $user->step;
-			
-		
-	}
-			//check progress
-			
-				//continuing user
-			//before verifying response, lets find out what type it is:
+	public function ussdProgress($user,$message){
+			$menu_item_id = $user->menu_item_id;
+			$step = $user->step;
 			$menuModel = new Model_Menu();
 			
 			$menu = $menuModel -> getMenu($menu_item_id);
-			
+			// print_r($menu);
+			// exit;
+// 			
 			
 			$menuType = $menu['type'];
 			// print_r($step);
@@ -149,16 +177,18 @@ class IndexController extends Zend_Controller_Action {
 				//exit;
 				if ($menuItem['id'] != 0) {
 					//update user data and next request and send back
+					$userModel = new Model_User();
+		
 				$result = $userModel -> updateUserMenuStep($user['id'],$next_step);
-				print_r($menuItem->description);
-				exit;
+				return $menuItem->description;
+				//exit;
 					
 				}else{
 					//compile summary for confirmation
 					//$menuItemsModel = new Model_MenuItems();
 				$MenuItems = $menuItemsModel -> getMenuItems($menu_item_id);
 				//build up the responses
-				$confirmation = $menu->description.PHP_EOL;
+				$confirmation = "Confirm?: ".$menu->description.PHP_EOL;
 				foreach ($MenuItems as $key => $value) {
 					//print_r($confirmation);
 					//exit;
@@ -177,12 +207,14 @@ class IndexController extends Zend_Controller_Action {
 					
 				}
 					//update the status to waiting for confirmation
+					$userModel = new Model_User();
+		
 					$result = $userModel -> updateUserSession($user['id'],2);
 				
 					
 					
-					print_r($confirmation);
-					exit;
+					return $confirmation;
+					//exit;
 					
 				}
 				//print_r($menuItem);
@@ -195,12 +227,14 @@ class IndexController extends Zend_Controller_Action {
 			}else{
 				
 				//when the user has not started the steps
+				$userModel = new Model_User();
+		
 				$result = $userModel -> updateUserMenuStep($user['id'],1);
 				
 				$menuItemsModel = new Model_MenuItems();
 				$menuItem = $menuItemsModel -> getNextMenuStep($menu_item_id,1);
-				print_r($menuItem->description);
-				exit;
+				return $menuItem->description;
+				//exit;
 				
 				
 			}
@@ -264,13 +298,27 @@ class IndexController extends Zend_Controller_Action {
 				
 			}
 			//update the progress with the next menu id
-			//$menuModel = new Model_User();
+			$userModel = new Model_User();
+			$no = $user ['phone'];
 			$result = $userModel -> updateUser($next_menu_id,$no);
 			if ($result) {
 				$menuModel = new Model_Menu();
 			
 			$menu = $menuModel -> getMenu($next_menu_id);
-			$menu_id = $menu->id;
+			$menu_id = $menu['id'];
+			$menuType = $menu['type'];
+			// print_r($step);
+			// exit;
+			if ($menuType == 2) {
+				//$menu
+				//print_r($menu);
+				//exit;
+				$output = $this->singleProcess($menu_id,$user);
+				//$output = $this->singleProcess($menu_item_id);
+				
+				return $output;
+			
+			}else{
 			//get the description
 			$description = $menu->description;
 			
@@ -280,67 +328,97 @@ class IndexController extends Zend_Controller_Action {
 				
 			
 			
-			print_r($description.PHP_EOL.$menuOptions);
-			exit;
-			
+			return $description.PHP_EOL.$menuOptions;
+			//exit;
+			}
 				
 			}
 			
 				
 			}
-			
-			}
-			// print_r($progress);
-			// exit;
-			//send the menu whose progress is stated
-			//check if there is a menu after the current menu or an action after the current menu
-			
-			//send the menu or end the transaction
-		}
 
-		print_r($user);
-		exit;
-		//$user =
 
-		$where = "phone='" . $no . "'";
-		//check if user exists
-		//$this->load->model('Users_model');
-		$user = $masterModel -> readData('*', 'users', $where);
-		print_r($user);
-		exit ;
-		if ($user -> id == 0) {
-			//This user needs to go to registration
-			$data = array('phone_number' => $no, 'session' => '1');
-
-			$result = $this -> Master_model -> createData('users', $data);
-			$user = $this -> Master_model -> readData('*', 'users', $where);
-			//print_r($result);
-			//exit();
-			if ($result != 0) {
-				//take him/her to the switch
-				//$level = 1;
-				//$user = $this->Master_model->read('*','users',$where);
-				$output = $this -> gameplay($user -> id, $message, $user -> level);
-			} else {
-				$output = "We had an error processing your message";
-			}
-
-		} else {
-			//we do a switch
-			//$this->load->model('Switch_model');
-
-			$user = $this -> Master_model -> read('*', 'users', $where);
-
-			$output = $this -> gameplay($user -> id, $message, $user -> level);
-
-		}
-		$response = "CON ";
-		$response .= $output;
-		//$output =
-		echo $response;
-		exit();
-		//$this->send_output($response,$no);
+		
 	}
+
+public function singleProcess($menu_item_id,$user){
+				// echo "hapa";
+				// exit;
+				
+	
+				$menuItemsModel = new Model_MenuItems();
+				$menuItem = $menuItemsModel -> getNextMenuStep($menu_item_id,1);
+				//print_r($menuItem);
+				//exit;
+				if ($menuItem['id'] != 0) {
+					//update user data and next request and send back
+					$userModel = new Model_User();
+		
+				$result = $userModel -> updateUserMenuStep($user['id'],1);
+				return $menuItem->description;
+				//exit;
+					
+				}
+	
+}
+			//check progress
+			
+				//continuing user
+			//before verifying response, lets find out what type it is:
+
+			
+			// }
+			// // print_r($progress);
+			// // exit;
+			// //send the menu whose progress is stated
+			// //check if there is a menu after the current menu or an action after the current menu
+// 			
+			// //send the menu or end the transaction
+		// }
+// 
+		// print_r($user);
+		// exit;
+		// //$user =
+// 
+		// $where = "phone='" . $no . "'";
+		// //check if user exists
+		// //$this->load->model('Users_model');
+		// $user = $masterModel -> readData('*', 'users', $where);
+		// print_r($user);
+		// exit ;
+		// if ($user -> id == 0) {
+			// //This user needs to go to registration
+			// $data = array('phone_number' => $no, 'session' => '1');
+// 
+			// $result = $this -> Master_model -> createData('users', $data);
+			// $user = $this -> Master_model -> readData('*', 'users', $where);
+			// //print_r($result);
+			// //exit();
+			// if ($result != 0) {
+				// //take him/her to the switch
+				// //$level = 1;
+				// //$user = $this->Master_model->read('*','users',$where);
+				// $output = $this -> gameplay($user -> id, $message, $user -> level);
+			// } else {
+				// $output = "We had an error processing your message";
+			// }
+// 
+		// } else {
+			// //we do a switch
+			// //$this->load->model('Switch_model');
+// 
+			// $user = $this -> Master_model -> read('*', 'users', $where);
+// 
+			// $output = $this -> gameplay($user -> id, $message, $user -> level);
+// 
+		// }
+		// $response = "CON ";
+		// $response .= $output;
+		// //$output =
+		// echo $response;
+		// exit();
+		//$this->send_output($response,$no);
+	//}
 
 	//$result = $masterModel -> create($tablee, $data);
 

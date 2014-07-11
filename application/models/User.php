@@ -60,6 +60,15 @@ class Model_User extends Zend_Db_Table_Abstract {
             return false;
         }
     }
+	public function updateUserData($data, $id) {
+        $where = array('id=?' => $id);
+       // $data = array('menu_item_id' => $progress);
+        if ( $this->update($data, $where ,$this->_name )) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 	public function updateUserMenuStep($id,$step){
 		$where = array('id=?' => $id);
         $data = array('step' => $step);

@@ -20,6 +20,17 @@ class Model_Response extends Zend_Db_Table_Abstract {
 		}
     }
 	
+	//confirm responses
+	public function confirmResponses($user){
+		$where = array('user_id=?' => $user['id'],'menu_id' => $user['menu_item_id'],'confirmed' => 0);
+        $data = array('confirmed' => 1);
+        if ( $this->update($data, $where ,$this->_name )) {
+            return true;
+        } else {
+            return false;
+        }
+		
+	}
 	//create user
 	
 	public function createResponse($data) {
