@@ -1,14 +1,31 @@
 <?php
 
-class Model_User extends Zend_Db_Table_Abstract {
+class Model_MenuItems extends Zend_Db_Table_Abstract {
 
-    protected $_name = "users";
+    protected $_name = "menu_item";
     protected $_dbTable;
 
     //Get all articles belonging to this category
-    public function getUserWithPhone($no) {
+    public function getMenuItems($id) {
         $select = $this->select()
-                ->where('phone=?', $no);
+                ->where('menu_id=?', $id);
+        $result = $this->fetchAll($select)->toArray();
+		
+		$i = 1;
+   		$menuItems = array();
+    	foreach ($result as $row) {
+        $menuItems[$i] = array( $row['id'],$row['description'],$row['next_menu_id'],$row['step'],$row['confirmation_phrase'] );
+        $i++;
+   		}
+		return $menuItems;
+		
+    
+	
+	}
+		public function getNextMenuStep($menu_item_id,$step){
+		$select = $this->select()
+                ->where('menu_id=?', $menu_item_id)
+				->where('step=?', $step);
         $row = $this->fetchRow($select);
 		if (empty($row['id'])) {
 			$row['id'] = 0;
@@ -16,7 +33,25 @@ class Model_User extends Zend_Db_Table_Abstract {
 		}else{
 			return $row;
 		}
-    }
+	}
+	
+	public function getMenuOptions($id) {
+        $select = $this->select()
+                ->where('menu_id=?', $id);
+        $result = $this->fetchAll($select)->toArray();
+		
+		$i = 1;
+   		$menuItems = "";
+    	foreach ($result as $row) {
+    		 $menuItems = $menuItems.$i.":".$row['description']. PHP_EOL;
+        //$menuItems[$i] = array( $row['id'],$row['description'] );
+        $i++;
+   		}
+		return $menuItems;
+		
+    
+	
+	}
 	
 	//create user
 	
@@ -51,38 +86,15 @@ class Model_User extends Zend_Db_Table_Abstract {
     }
 
 
-    public function updateUser($progress, $phone) {
-        $where = array('phone=?' => $phone);
-        $data = array('menu_item_id' => $progress);
+    public function update_category_slug($slug, $category) {
+        $where = array('TE_categories=?' => $category);
+        $data = array('TE_category_slug' => $slug);
         if ( $this->update($data, $where ,$this->_name )) {
             return true;
         } else {
             return false;
         }
     }
-	public function updateUserMenuStep($id,$step){
-		$where = array('id=?' => $id);
-        $data = array('step' => $step);
-        if ( $this->update($data, $where ,$this->_name )) {
-            return true;
-        } else {
-            return false;
-        }
-		
-		
-	}
-	
-	public function updateUserSession($id,$session){
-		$where = array('id=?' => $id);
-        $data = array('session' => $session);
-        if ( $this->update($data, $where ,$this->_name )) {
-            return true;
-        } else {
-            return false;
-        }
-		
-		
-	}
 
     public function getDbTable() {
         if (null === $this->_dbTable) {

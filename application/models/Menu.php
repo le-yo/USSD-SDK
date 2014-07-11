@@ -1,14 +1,14 @@
 <?php
 
-class Model_User extends Zend_Db_Table_Abstract {
+class Model_Menu extends Zend_Db_Table_Abstract {
 
-    protected $_name = "users";
+    protected $_name = "menu";
     protected $_dbTable;
 
     //Get all articles belonging to this category
-    public function getUserWithPhone($no) {
+    public function getMenu($id) {
         $select = $this->select()
-                ->where('phone=?', $no);
+                ->where('id=?', $id);
         $row = $this->fetchRow($select);
 		if (empty($row['id'])) {
 			$row['id'] = 0;
@@ -18,6 +18,7 @@ class Model_User extends Zend_Db_Table_Abstract {
 		}
     }
 	
+
 	//create user
 	
 	public function createUser($data) {
@@ -51,38 +52,15 @@ class Model_User extends Zend_Db_Table_Abstract {
     }
 
 
-    public function updateUser($progress, $phone) {
-        $where = array('phone=?' => $phone);
-        $data = array('menu_item_id' => $progress);
+    public function update_category_slug($slug, $category) {
+        $where = array('TE_categories=?' => $category);
+        $data = array('TE_category_slug' => $slug);
         if ( $this->update($data, $where ,$this->_name )) {
             return true;
         } else {
             return false;
         }
     }
-	public function updateUserMenuStep($id,$step){
-		$where = array('id=?' => $id);
-        $data = array('step' => $step);
-        if ( $this->update($data, $where ,$this->_name )) {
-            return true;
-        } else {
-            return false;
-        }
-		
-		
-	}
-	
-	public function updateUserSession($id,$session){
-		$where = array('id=?' => $id);
-        $data = array('session' => $session);
-        if ( $this->update($data, $where ,$this->_name )) {
-            return true;
-        } else {
-            return false;
-        }
-		
-		
-	}
 
     public function getDbTable() {
         if (null === $this->_dbTable) {

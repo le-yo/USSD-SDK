@@ -54,12 +54,245 @@ class IndexController extends Zend_Controller_Action {
 		//check if user exists
 		if ($user['id'] == 0) {
 			//register the user
-			
+			$dataa = array('phone' => $no, 'menu_item_id' => 1);
+			//print_r($dataa);
+			//exit;
+			$result = $userModel -> createUser($dataa);
+			//print_r($result);
+			//exit;
+			//die($result);
 			//send the first menu and update the progress
 			
 		}else{
+			//check session
+			$session = $user->session;
+			switch ($session) {
+				case 0:
+					$output = $this->mainMenu($no);
+					break;
+				case 1:
+					$output = $this->ussdProgress();
+					break;
+				case 2:
+					$output = $this->ussdConfirmation();
+					break;
+				
+				default:
+					$output = $this->mainMenu();
+					break;
+			}
+			
+			print_r($output);
+			exit;
+		}
+		
+}
+	public function mainMenu($no){
+			$menuModel = new Model_Menu();
+			
+			$menu = $menuModel -> getMenu(1);
+			$menu_id = $menu->id;
+			//get the description
+			$description = $menu->description;
+			
+			//build up the options
+			$menuItemsModel = new Model_MenuItems();
+			$menuOptions = $menuItemsModel -> getMenuOptions($menu_id);
+				
+			$result = $userModel -> updateUser(1,$no);
+			
+			return $description.PHP_EOL.$menuOptions;
+			//exit;
+		
+		
+	}
+	
+	public function ussdProgress(){
+		$menu_item_id = $user->menu_item_id;
+		$step = $user->step;
+			
+		
+	}
 			//check progress
 			
+				//continuing user
+			//before verifying response, lets find out what type it is:
+			$menuModel = new Model_Menu();
+			
+			$menu = $menuModel -> getMenu($menu_item_id);
+			
+			
+			$menuType = $menu['type'];
+			// print_r($step);
+			// exit;
+			if ($menuType == 2) {
+				
+				//no verification but feed it response and update step as you move on
+			if ($step > 0) {
+				
+		    $message = strtolower($message);
+				//feed the response to the table
+			$dataa = array('user_id' => $user['id'], 'menu_id' => $menu_item_id,'step'=> $step, 'response' => $message );
+			//print_r($dataa);
+			//exit;
+			$Response_Model = new Model_Response();
+		
+			$result = $Response_Model -> createResponse($dataa);
+			if ($result) {
+				//check if we have another step, if we do, request, if we dont, compile the summary and confirm
+				$next_step = $step+1;
+				// print_r($step);
+				// exit;
+				$menuItemsModel = new Model_MenuItems();
+				$menuItem = $menuItemsModel -> getNextMenuStep($menu_item_id,$next_step);
+				//print_r($menuItem);
+				//exit;
+				if ($menuItem['id'] != 0) {
+					//update user data and next request and send back
+				$result = $userModel -> updateUserMenuStep($user['id'],$next_step);
+				print_r($menuItem->description);
+				exit;
+					
+				}else{
+					//compile summary for confirmation
+					//$menuItemsModel = new Model_MenuItems();
+				$MenuItems = $menuItemsModel -> getMenuItems($menu_item_id);
+				//build up the responses
+				$confirmation = $menu->description.PHP_EOL;
+				foreach ($MenuItems as $key => $value) {
+					//print_r($confirmation);
+					//exit;
+					//select the corresponding response
+					if ($value[4] != 'PIN') {
+						$phrase = $value[4];
+						$response = $Response_Model -> getResponse($user['id'],$menu_item_id,$value[3]);
+						
+						$confirmation = $confirmation.$phrase.": ".$response['response'].PHP_EOL;
+						//print_r($response['response']);
+						//exit;
+						
+					
+					}
+					
+					
+				}
+					//update the status to waiting for confirmation
+					$result = $userModel -> updateUserSession($user['id'],2);
+				
+					
+					
+					print_r($confirmation);
+					exit;
+					
+				}
+				//print_r($menuItem);
+				//exit;
+				
+			}
+			
+				
+				
+			}else{
+				
+				//when the user has not started the steps
+				$result = $userModel -> updateUserMenuStep($user['id'],1);
+				
+				$menuItemsModel = new Model_MenuItems();
+				$menuItem = $menuItemsModel -> getNextMenuStep($menu_item_id,1);
+				print_r($menuItem->description);
+				exit;
+				
+				
+			}
+			
+			
+			}else{
+			
+			//verify response
+			
+				$menuItemsModel = new Model_MenuItems();
+				$MenuItems = $menuItemsModel -> getMenuItems($menu_item_id);
+				
+				//now we have the menu items it is time to create the USSD Menu
+				
+				// print_r($MenuItems);
+				// exit;
+
+				if (empty($MenuItems)) {
+					$selected_option = $message;
+				} else {
+				
+					// echo "hapa";
+					// exit;
+					$message = strtolower($message);
+					// print_r($message);
+					// exit;
+					foreach ($MenuItems as $key => $value) {
+						//check if they are equal
+						// print_r($value);
+						// exit;
+
+						if ((trim(strtolower($key)) == $message)) {
+							//foreach ($value as $key1 => $value1) {
+								$selected_option = $key;
+								$next_menu_id = $value[2];
+							//}
+							//if they fail to map then selected option is empty but we don't stop there,
+							//do a second check to check if the user sent the value instead
+						}
+				
+						if (empty($selected_option)) {
+							foreach ($value as $key1 => $value1) {
+								//print_r($value1);
+								//exit;
+								if ((trim(strtolower($value1)) == $message)) {
+									$selected_option = $value1;
+								}
+							}
+						}
+					}
+				}
+			
+			// print_r($selected_option);
+			// exit;
+// 			
+			if(empty($selected_option)){
+				$selected_option = 0;
+			}
+			if (empty($next_menu_id)) {
+				$next_menu_id = 0;
+				
+			}
+			//update the progress with the next menu id
+			//$menuModel = new Model_User();
+			$result = $userModel -> updateUser($next_menu_id,$no);
+			if ($result) {
+				$menuModel = new Model_Menu();
+			
+			$menu = $menuModel -> getMenu($next_menu_id);
+			$menu_id = $menu->id;
+			//get the description
+			$description = $menu->description;
+			
+			//build up the options
+			$menuItemsModel = new Model_MenuItems();
+			$menuOptions = $menuItemsModel -> getMenuOptions($menu_id);
+				
+			
+			
+			print_r($description.PHP_EOL.$menuOptions);
+			exit;
+			
+				
+			}
+			
+				
+			}
+			
+			}
+			// print_r($progress);
+			// exit;
+			//send the menu whose progress is stated
 			//check if there is a menu after the current menu or an action after the current menu
 			
 			//send the menu or end the transaction
