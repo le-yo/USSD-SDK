@@ -109,7 +109,7 @@ class IndexController extends Zend_Controller_Action {
 		
 				
 		
-		return "Confirmed successfully";
+		return "Sent, Wait for M-PESA to reply";
 			
 		
 		
@@ -197,7 +197,7 @@ class IndexController extends Zend_Controller_Action {
 						$phrase = $value[4];
 						$response = $Response_Model -> getResponse($user['id'],$menu_item_id,$value[3]);
 						
-						$confirmation = $confirmation.$phrase.": ".$response['response'].PHP_EOL;
+						$confirmation = $phrase.": ".$response['response'].PHP_EOL;
 						//print_r($response['response']);
 						//exit;
 						
