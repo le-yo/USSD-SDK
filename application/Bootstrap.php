@@ -106,10 +106,17 @@ $Router->addRoute("search/build",
 			array
 			("controller" => "search",
 			"action" => "build") ));
-$Router->addRoute("search/search",
+$Router->addRoute("survey/index",
 			new Zend_Controller_Router_Route
 			(
-			"/search/search",
+			"/survey/index",
 			array
-			("controller" => "search",
-			"action" => "search") ));
+			("controller" => "survey",
+			"action" => "index") ));
+$Router->addRoute("index/index",
+			new Zend_Controller_Router_Route
+			(
+			"/index/index",
+			array
+			("controller" => "Index",
+			"action" => "index") ));

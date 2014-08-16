@@ -15,7 +15,7 @@ error_reporting(-1);
  * @link		http://devs.mobi
  */
 
-class IndexController extends Zend_Controller_Action {
+class IindexController extends Zend_Controller_Action {
 
 	public function init() {
 		/* Initialize action controller here */
@@ -51,9 +51,6 @@ class IndexController extends Zend_Controller_Action {
 		$userModel = new Model_User();
 		
 		$user = $userModel -> getUserWithPhone($no);
-		
-		//print_r($user);
-		//exit;
 		//check if user exists
 		if ($user['id'] == 0) {
 			//register the user
@@ -61,11 +58,6 @@ class IndexController extends Zend_Controller_Action {
 			//print_r($dataa);
 			//exit;
 			$result = $userModel -> createUser($dataa);
-			if ($result) {
-				$output = $this->mainMenu($user,$no);
-				print_r($output);
-				exit;				
-			}
 			//print_r($result);
 			//exit;
 			//die($result);
@@ -117,7 +109,7 @@ class IndexController extends Zend_Controller_Action {
 		
 				
 		
-		return "Sent, Please wait for SMS Confirmation";
+		return "Sent, Wait for M-PESA to reply";
 			
 		
 		
@@ -188,8 +180,6 @@ class IndexController extends Zend_Controller_Action {
 					$userModel = new Model_User();
 		
 				$result = $userModel -> updateUserMenuStep($user['id'],$next_step);
-				//$menuItem = $menuItemsModel -> getNextMenuStep($menu_item_id,$step);
-				
 				return $menuItem->description;
 				//exit;
 					
@@ -200,20 +190,14 @@ class IndexController extends Zend_Controller_Action {
 				//build up the responses
 				$confirmation = "Confirm?: ".$menu->description.PHP_EOL;
 				foreach ($MenuItems as $key => $value) {
-					//print_r($value);
-					//exit;
 					//print_r($confirmation);
 					//exit;
 					//select the corresponding response
 					if ($value[4] != 'PIN') {
 						$phrase = $value[4];
-						//print_r($value[4]);
-						
-						//$menu_item_id = $value['']
 						$response = $Response_Model -> getResponse($user['id'],$menu_item_id,$value[3]);
-						//print_r($response['response']."<br>");
 						
-						$confirmation = $confirmation.PHP_EOL.$value[4].": ".$response['response'].PHP_EOL;
+						$confirmation = $phrase.": ".$response['response'].PHP_EOL;
 						//print_r($response['response']);
 						//exit;
 						
@@ -222,14 +206,11 @@ class IndexController extends Zend_Controller_Action {
 					
 					
 				}
-				
-					//print_r($confirmation);
-					//exit;
 					//update the status to waiting for confirmation
 					$userModel = new Model_User();
 		
 					$result = $userModel -> updateUserSession($user['id'],2);
-					
+				
 					
 					
 					return $confirmation;

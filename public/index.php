@@ -17,6 +17,12 @@ set_include_path(implode(PATH_SEPARATOR, array(
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
+
+
+//hacks
+$frontController->setParam('useDefaultControllerAlways', true);
+$frontController->dispatch();
+//end of hacks
 // Create application, bootstrap, and run
 $application = new Zend_Application(
     APPLICATION_ENV,
