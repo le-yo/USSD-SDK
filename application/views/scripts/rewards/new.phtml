@@ -1,0 +1,88 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Reward Farmer</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="/rewards">Rewards</a></li>
+          <li class="active">new</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+        <div class="col-md-8">
+        	<?php if($this->mid || $this->message ){?>
+				<div class="col-md-12">
+						<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+						  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						  <?php echo ucfirst($this->message);?>
+						</div>
+				</div>
+				<?php } ?>
+		
+		
+        <form class="form-horizontal" role="form" method="post" action="/rewards/new/guid/<?php if($this->id){ echo $this->id; }?>">
+                      <div class="form-group">
+                        <label for="farmersname" class="col-sm-3 control-label">Farmers Name:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p><?php if($this->farmer->names){ echo $this->farmer->names; }?></p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="phoneNo" class="col-sm-3 control-label">Phone Number:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p><?php if($this->farmer->phoneno){ echo $this->farmer->phoneno; }?></p>
+                        </div>
+          			  </div>
+                      <div class="form-group">
+                        <label for="idnumber" class="col-sm-3 control-label">ID Number:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p><?php if($this->farmer->idno){ echo $this->farmer->idno; }?></p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="idnumber" class="col-sm-3 control-label">Loyalty Points:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p><?php if($this->points){ echo $this->points; }else{ echo '0'; }?></p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="language" class="col-sm-3 control-label">Reward</label>
+                        <div class="col-sm-6 col-md-8">
+                        	<input class="form-control" name="reward" />
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="language" class="col-sm-3 control-label">Description</label>
+                        <div class="col-sm-6 col-md-8">
+                          <textarea name="rewarddescription" class="form-control"></textarea>
+                      </div>
+                      </div>
+                      <br/><br/><br/>
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button type="submit" class="btn btn-success">Reward</button>
+                        </div>
+                      </div>
+        		</form>
+        		
+        </div>
+        <div class="col-md-4">
+        <div class="list-group">  
+
+           
+          </div> <!-- /.list-group -->
+		</div><!--/.col-->
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

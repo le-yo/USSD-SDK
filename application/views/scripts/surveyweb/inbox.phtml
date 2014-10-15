@@ -1,0 +1,168 @@
+<?php 
+	
+?>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">SMS Inbox</h2>
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li><a href="/inbox">SMS</a></li>
+          <li class="active">Inbox</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-suitcase"></i>
+                Messages
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true">
+                  <thead>
+                    <tr>
+                      <th class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </th>
+                      <th data-filterable="true" data-sortable="true">Farmer</th>
+                      <th data-filterable="true" data-sortable="true" data-direction="desc">MESSAGE</th>
+                      <th data-filterable="true" class="hidden-xs hidden-sm">DATE</th>
+                      <th data-filterable="false" class="text-center hidden-xs hidden-sm">ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <?php 
+                   if($this->responses){
+                   		
+                   	$responses = $this->responses;
+                   	
+                   	foreach ($responses as $response) {
+						   
+                   
+                   ?>
+                    
+                    <tr>
+                      <td class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </td>
+                      <td><?php  if($response->farmer_id){ echo $this->getFarmerName($response->farmer_id); } ?></td>
+                      <td><?php if($response->message){ echo $response->message; }else{ echo '<i>Blank Message</i>'; }?></td>
+                      <td><?php if($response->dateresponded){ echo $response->dateresponded; }?></td>
+                      <td class="text-center">
+                      <a href="/sms/reply/guid/<?php if($response->farmer_id){ echo $response->farmer_id; } ?>" class="btn btn-xs btn-success" > <i class="fa fa-reply"></i> reply  </a> 
+                      &nbsp;
+                      &nbsp;
+                      </td>
+                    </tr>
+                    
+                    <?php 
+							} 
+						} ?>
+                    
+                  </tbody>
+                </table>
+               
+              </div> <!-- /.table-responsive -->
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        
+
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+      
+    </div> <!-- /.content-container -->
+    <div class="modal fade" id="draftSMS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Delete Message</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>All farmers meeting will be held at Eldoret Show ground on 12/11/2014 you are invited to attend.</p>
+			    </div>
+			 	
+			 </div>
+		</div>
+	</div>
+    <div class="modal fade" id="replySMS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Draft Message</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>All farmers meeting will be held at Eldoret Show ground on 12/11/2014 you are invited to attend.</p>
+                    <form class="form-horizontal" role="form" action="inbox-sms.php">
+                      <div class="form-group">
+                        <label for="farmersname" class="col-sm-3 control-label">Farmers Name:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p>James Nakola</p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="phoneNo" class="col-sm-3 control-label">Phone Number:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p>0720938723</p>
+                        </div>
+          			  </div>
+                      <div class="form-group">
+                        <label for="idnumber" class="col-sm-3 control-label">ID Number:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p>27037493</p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="txtmessage" class="col-sm-3 control-label">Message:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button type="submit" class="btn btn-success">Reward</button>
+                        </div>
+                      </div>
+                     </div>
+        		</form>
+			    </div>
+			 </div>
+		</div>
+	</div>
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

@@ -2,21 +2,101 @@
 
 class Model_Survey extends Zend_Db_Table_Abstract {
 
-    protected $_name = "survey";
+    protected $_name = "smsSurveys";
     protected $_dbTable;
 
     //Get all articles belonging to this category
-    public function getSurvey($survey_id) {
+    
+    public function addData($data){
+                   $row = $this->createRow();
+				   //$row->guid = uniqid('acild-sms-');
+                   $row->setFromArray($data);
+				   
+                   //save the new row
+                   return $row->save();
+           }
+    
+    public function getSurvey($code) {
+    	//print_r($code);
+		//exit;
         $select = $this->select()
-                ->where('id=?', $survey_id);
+                ->where('code=?', $code);
         $row = $this->fetchRow($select);
 		if (empty($row['id'])) {
 			$row['id'] = 0;
+			$row = (object) $row;
 			return $row;
 		}else{
 			return $row;
 		}
     }
+
+public function getSurveybyID($id){
+	 $select = $this->select()
+                ->where('id=?', $id);
+        $row = $this->fetchRow($select);
+		if (empty($row['id'])) {
+			$row['id'] = 0;
+			$row = (object) $row;
+			return $row;
+		}else{
+			return $row;
+		}
+	
+}
+	
+	//get survey codes
+	
+	public function getSurveyCodes(){
+		$select = $this->select();
+                //->where('survey_question_id=?', $id);
+        $result = $this->fetchAll($select)->toArray();
+		
+		$output = array_slice($result, -5);
+		//print_r($output);
+		//exit;
+		
+	$i = '1';
+    $options = "";
+    foreach ($output as $row) {
+    	
+		//print_r($row['option_text']);
+		//exit;
+        $options = $options.$i.": ".$row['shortname']. PHP_EOL;
+		// if($row->is_correct_answer==1){
+			// $correctAnswer = $i;
+		// }
+        $i++;
+	}
+	
+	return $options;
+	}
+	//survey menu
+	public function getSurveyMenu(){
+		$select = $this->select();
+                //->where('survey_question_id=?', $id);
+        $result = $this->fetchAll($select)->toArray();
+		
+		$output = array_slice($result, -5);
+		//print_r($output);
+		//exit;
+		
+	$i = '1';
+    $options = array();
+    foreach ($output as $row) {
+    	
+		//print_r($row['option_text']);
+		//exit;
+        $options[$i] = array($row['id'],$row['shortname'],$row['code']);
+		// if($row->is_correct_answer==1){
+			// $correctAnswer = $i;
+		// }
+        $i++;
+	}
+	//print_r($options);
+	//exit;
+	return $options;
+	}
 	
 	//create user
 	

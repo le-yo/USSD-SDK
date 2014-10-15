@@ -1,0 +1,120 @@
+<?php 
+	$partners = $this->partners;
+?>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Partners</h2>
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li class="active"><a href="">SMS</a></li>
+        </ol>
+      </div> <!-- /.content-header -->
+	
+      	
+      
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-table"></i>
+                SMS sent
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true">
+                  <thead>
+                    <tr>
+                      <th class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </th>
+                      <th data-filterable="true" data-sortable="true" data-direction="desc">SMS</th>
+                      <th data-filterable="true" data-sortable="true">Sent To</th>
+                      <th data-filterable="true" class="hidden-xs hidden-sm">Date Sent</th>
+                      <th data-filterable="true" class="hidden-xs hidden-sm">Sent By</th>
+                      <th data-filterable="false" class="text-center hidden-xs hidden-sm">ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                    	foreach ($partners as $partner) {
+							
+                    ?>
+                    <tr>
+                      <td class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </td>
+                      <td>
+                      	<a href="/partners/view/guid/<?php if($partner->guid){ echo $partner->guid; } ?> ">
+                      	<?php 
+                      		if($partner->names){ echo $partner->names; }
+                      	?> 
+                      	</a>
+                      	</td>
+                      <td>
+                      	<?php 
+                      		if($partner->phoneno){ echo $partner->phoneno; }
+                      	?> 
+                      </td>
+                      <td>
+                      	<?php 
+                      		if($partner->email){ echo $partner->email; }
+                      	?> 
+                      </td>
+                      <td class="hidden-xs hidden-sm">
+                      	<?php 
+                      		if($partner->dateregistered){ echo $partner->dateregistered; }
+                      	?> 
+                      </td>
+                      <td class="text-center">
+                      &nbsp;
+                      <a href="/partners/view/guid/<?php if($partner->guid){ echo $partner->guid; } ?> " class="btn btn-xs btn-success"><i class="fa fa-eye"></i> view</a>
+                      </td>
+                    </tr>
+                    
+                    <?php } ?>
+                    
+                  </tbody>
+                </table>
+              </div> <!-- /.table-responsive -->
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        
+
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

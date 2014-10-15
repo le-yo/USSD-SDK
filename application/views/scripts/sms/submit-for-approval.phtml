@@ -1,0 +1,65 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Submit for Approval</h2>
+        <ol class="breadcrumb">
+          <li><a href="/hub">Dashboard</a></li>
+          <li><a href="/sms">SMS</a></li>
+          <li class="active">Submit for Approval</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      
+
+      <div class="row">
+
+        <div class="col-md-6 col-sm-9">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-hand-o-up"></i>
+               Submit message for approval
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">
+
+              <?php if($this->mid || $this->message ){?>
+					<div class="col-md-12">
+							<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+							  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							  <?php echo ucfirst($this->message);?>
+							</div>
+					</div>
+					<?php } ?>
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        </div><!-- /.col -->
+
+
+
+        
+
+
+      </div> <!-- /.row -->
+
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

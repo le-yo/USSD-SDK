@@ -1,111 +1,453 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="shortcut icon" href="/ico/favicon.ico">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <title>Dashboard: ACILD</title>
 
-        <title>CiPELT :: Home</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
 
-        <!-- Bootstrap core CSS -->
-        <link href="/css/bootstrap.css" rel="stylesheet">
-        <link href="/css/custom.cip.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
 
-        <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300,700">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/js/libs/css/ui-lightness/jquery-ui-1.9.2.custom.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
 
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" href="/js/plugins/icheck/skins/minimal/blue.css">
 
-        <!-- Just for debugging purposes. Don't actually copy this line! -->
-        <!--[if lt IE 9]><script src="/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-    </head>
-
-    <body>
-
-        <!-- Static navbar -->
-        <div id="wrap">
-            <div class="navbar navbar-default navbar-static-top main-nav" role="navigation">
-                <div class="container">
-                    <div class="top-menu-bar-wrap">
-                        <div class="col-xs-6 col-sm-6">
-                            <div class="nav-courses-wrap">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">WEEKS <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/articles/week/1">Week 1</a></li>
-                                    <li><a href="/articles/week/2">Week 2</a></li>
-                                    <li><a href="/articles/week/3">Week 3</a></li>
-                                    <li><a href="/articles/week/4">Week 4</a></li>
-                                    <li><a href="/articles/week/5">Week 5</a></li>
-                                    <li><a href="/articles/week/6">Week 6</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="/articles/weeks"><span class="glyphicon glyphicon-list"></span> &nbsp;All Weeks &rarr;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 pull-right">
-                            <div class="pull-right home-icons">
-                                <a href="/articles/categories"><img class="home-icons-bal" src="/images/browse.png" alt="browse"/> Browse</a> &nbsp;&nbsp; <a href="/search"><img class="home-icons-bal" src="/images/searchicon.png" alt="Search" /> Search</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="navbar navbar-default navbar-static-top second" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="pull-left menu-text">Menu</span>
-                            <span class="pull-left menu-icon">
-                                <span class="sr-only"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </span>
-                            <div class="clearfix"></div>
-
-                        </button>
-                        <a class="navbar-brand" href="/"><img class="logoimg" src="/images/logo_full.png" /></a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="">Home</a></li>
-                            <li><a href="/articles/categories">Categories</a></li>
-                            <li><a href="/articles/weeks">Weeks</a></li>
-
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/about">About CiPELT</a></li>
-                            <li><a href="/support">Support</a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-
-            <?php echo $this->layout()->content; ?>
-
-            <div id="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="copyright-wrap">
-                                <p class="nomargin center">Brought to you by <a href=""> <img class="bal-copy" src="/images/bclogo.png" /></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/css/target-admin.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/felix.custom.css">
 
 
-            <!-- Bootstrap core JavaScript
-            ================================================== -->
-            <!-- Placed at the end of the document so the pages load faster -->
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <script src="/js/bootstrap.min.js"></script>
-    </body>
+	<script src="/js/libs/jquery-1.10.1.min.js"></script>
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<div class="navbar">
+
+  <div class="container">
+
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-cogs"></i>
+      </button>
+
+      <a class="navbar-brand navbar-brand-image" href="/">
+        <div class="col-md-2">
+           <div class="logo">
+        	<img src="/img/acild_logo_2.png"/>
+		   </div>
+         </div>
+      </a>
+
+    </div> <!-- /.navbar-header -->
+
+    <div class="navbar-collapse collapse">
+
+      
+
+
+      <ul class="nav navbar-nav navbar-right">   
+
+        <li class="dropdown navbar-profile">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+            &nbsp;&nbsp;<?php echo $this->getProfile(); ?>
+            <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu" role="menu">
+          	<li class="divider"></li>
+			<li>
+             <?php echo $this->getProfileEmail(); ?> 
+            </li>
+			<li class="divider"></li>
+            <li>
+              <a href="page-profile.php">
+                <i class="fa fa-user"></i> 
+                &nbsp;&nbsp;My Profile
+                
+              </a>
+            </li>
+
+
+            <li>
+              <a href="/account/register">
+                <i class="fa fa-plus"></i> 
+                &nbsp;&nbsp;Add User
+              </a>
+            </li>
+
+            <li class="divider"></li>
+
+            <li>
+              <a href="/account/logout">
+                <i class="fa fa-sign-out"></i> 
+                &nbsp;&nbsp;Logout
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+      </ul>
+
+    </div> <!--/.navbar-collapse -->
+
+  </div> <!-- /.container -->
+
+</div> <!-- /.navbar -->
+<div class="mainbar">
+
+  <div class="container">
+
+    <button type="button" class="btn mainbar-toggle" data-toggle="collapse" data-target=".mainbar-collapse">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="mainbar-collapse collapse">
+
+      <ul class="nav navbar-nav mainbar-nav">
+
+        <li class="active">
+          <a href="/hub">
+            <i class="fa fa-dashboard"></i>
+            Dashboard
+          </a>
+        </li>
+
+	<?php if($this->isAcild()){?>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <i class="fa fa-envelope-o"></i>
+            SMS
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">   
+          
+           	<li><a href="/sms/inbox"><i class="fa fa-inbox nav-icon"></i>SMS Inbox</a></li> 
+           	<li><a href="/sms/sent"><i class="fa fa-external-link nav-icon"></i>SMSs Sent</a></li>
+           	<li class="divider"></li>
+           	<li><a href="/sms/compose-sms"><i class="fa fa-plus nav-icon"></i> Compose SMS</a></li>
+            
+            <!-- <li><a href=""><i class="fa fa-suitcase nav-icon"></i>SMS Drafts</a></li> -->
+             
+                       
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <span class="crop"></span>
+            Crops
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/improved-crops"><i class="glyphicon glyphicon-tree-deciduous nav-icon"></i> Improved Crops</a></li>
+            <li class="divider"></li>
+            <li><a href="/improved-crops/new"><i class="fa fa-plus nav-icon"></i> New</a></li>
+          </ul>
+        </li> 
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <i class="fa fa-file-text"></i>
+            Content
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">   
+          	<li><a href="/content"><i class="fa fa-external-link nav-icon"></i>Content</a></li>
+          	<li class="divider"></li>
+            <li><a href="/content/new"><i class="fa fa-plus"></i> New Content</a></li>
+            
+            <!-- <li><a href=""><i class="fa fa-inbox nav-icon"></i>SMS Inbox</a></li> 
+            <li><a href=""><i class="fa fa-suitcase nav-icon"></i>SMS Drafts</a></li>
+             -->
+                       
+          </ul>
+        </li>
+
+        <li class="dropdown ">
+          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+          <i class="fa fa-files-o"></i> 
+          Surveys
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/surveyweb/compose"><i class="fa fa-file-text nav-icon"></i> Create</a></li>
+            <!-- <li><a href=""><i class="fa fa-suitcase nav-icon"></i> Drafts</a></li>
+            <li><a href=""><i class="fa fa-external-link nav-icon"></i> Sent</a></li>
+            <li><a href=""><i class="fa fa-exchange nav-icon"></i> Responses</a></li> -->
+          </ul>
+        </li>
+		<li class="dropdown ">
+          <a href="#contact" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <!--<i class="fa fa-thumbs-o-up"></i>-->
+            <span class="reward"></span>
+            Rewards
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/rewards"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;Reward</a></li>
+            <li><a href=""><i class="fa fa-clock-o"></i> &nbsp;&nbsp;History</a></li>
+          </ul>          
+        </li>
+        <li class="dropdown ">
+          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <i class="fa fa-user"></i>
+            Partners
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/partners"><i class="fa fa-users nav-icon"></i> Partners</a></li>
+            <li><a href="/agrovets"><i class="glyphicon glyphicon-compressed nav-icon"></i> Agrovets</a></li>
+            <li class="divider"></li>
+            <li><a href="/partners/new"><i class="fa fa-plus nav-icon"></i> New Partner</a></li>
+            <li><a href="/agrovets/new"><i class="fa fa-plus nav-icon"></i>New Agrovets</a></li>
+          </ul>
+        </li>  
+
+        <li class="dropdown ">
+          <a href="#contact" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <!--<i class="fa fa-external-link"></i>-->
+            <span class="farmer"></span>
+            Farmer
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/farmers"><i class="fa fa-eye"></i>&nbsp;&nbsp; Farmers List</a></li> 
+            <li class="divider"></li> 
+            <li><a href="/farmers/create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Register Farmer</a></li>    
+           
+          </ul>
+        </li>
+        
+        
+		<li class="">
+          <a href="/gallery">
+            <i class="fa fa-picture-o"></i>
+            Gallery
+          </a>
+        </li>
+        <?php }elseif($this->isOrg()){?>
+        	
+        	
+        	
+        	
+        	
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <i class="fa fa-envelope-o"></i>
+            SMS
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">   
+          
+           	<li><a href="/sms/inbox"><i class="fa fa-inbox nav-icon"></i>SMS Inbox</a></li> 
+           	<li><a href="/sms/sent"><i class="fa fa-external-link nav-icon"></i>SMSs Sent</a></li>
+           	<li class="divider"></li>
+           	<li><a href="/sms/compose-sms"><i class="fa fa-plus nav-icon"></i> Compose SMS</a></li>
+            
+            <!-- <li><a href=""><i class="fa fa-suitcase nav-icon"></i>SMS Drafts</a></li> -->
+             
+                       
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <span class="crop"></span>
+            Crops
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/improved-crops"><i class="glyphicon glyphicon-tree-deciduous nav-icon"></i> Improved Crops</a></li>
+            <li class="divider"></li>
+            <li><a href="/improved-crops/new"><i class="fa fa-plus nav-icon"></i> New</a></li>
+          </ul>
+        </li> 
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <i class="fa fa-file-text"></i>
+            Content
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">   
+          	<li><a href="/content"><i class="fa fa-external-link nav-icon"></i>Content</a></li>
+          	<li class="divider"></li>
+            <li><a href="/content/new"><i class="fa fa-plus"></i> New Content</a></li>
+            
+            <!-- <li><a href=""><i class="fa fa-inbox nav-icon"></i>SMS Inbox</a></li> 
+            <li><a href=""><i class="fa fa-suitcase nav-icon"></i>SMS Drafts</a></li>
+             -->
+                       
+          </ul>
+        </li>
+
+        <li>
+        	<a href="/farmers"><span class="farmer">
+        		
+        	</span>&nbsp;&nbsp; Farmers
+        	</a>
+        </li>
+        
+		<li class="">
+          <a href="/gallery">
+            <i class="fa fa-picture-o"></i>
+            Gallery
+          </a>
+        </li>
+        
+        <?php }?>
+      </ul>
+
+    </div> <!-- /.navbar-collapse-->   
+
+  </div> <!-- /.container --> 
+
+</div> <!-- /.mainbar -->
+
+
+<?php echo $this->layout()->content; ?>
+
+<footer class="footer">
+
+  <div class="container">
+
+    <div class="row">
+
+      <!--<div class="col-sm-6 col-md-4">
+
+        <h4>Contacts</h4>
+
+        <br>
+		 <p>HIWI Court 2010</p>
+        <p>Ngong – Matasia Road</p>
+        <p>Ngong, Town</p>
+        <p>Kenya</p>
+        <p>P.O. Box 1011-00208,</p>
+        <p>Ngong</p>
+        <p>+254-734-788-563</p>
+
+            
+        
+
+      </div> <!-- /.col -->
+
+      <!--<div class="col-sm-6 col-md-4"> 
+
+        <h4>Support</h4>
+
+        <br>
+
+        <ul class="icons-list">
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Frequently Asked Questions</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Ask a Question</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">How it works</a>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Feedback</a>
+          </li>
+        </ul>  
+      </div> <!-- /.col -->
+
+      <!--<div class="col-sm-6 col-md-4">
+
+        <h4>Legal</h4>
+
+        <br>
+
+        <ul class="icons-list">
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">License</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Terms of Use</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Privacy Policy</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Security</a>
+          </li>
+        </ul>       
+
+      </div> <!-- /.col -->
+	   
+      <div class="col-sm-6 col-md-12">
+      	<hr>    
+
+        <p>&copy; 2014 ACILD. <span class="pull-right"> Product of <a href="www.acild.org">ACILD</a></span> </p>   
+        
+      </div> <!-- /.col -->
+    
+
+    </div> <!-- /.row -->
+
+  </div> <!-- /.container -->
+  
+</footer>
+
+  <script src="/js/libs/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="/js/libs/bootstrap.min.js"></script>
+  <style type="text/css">
+	${demo.css}
+  </style>
+
+
+
+  <!--[if lt IE 9]>
+  <script src="/js/libs/excanvas.compiled.js"></script>
+  <![endif]-->
+  
+  <!-- Plugin JS -->
+  <script src="/js/plugins/icheck/jquery.icheck.js"></script>
+  <script src="/js/plugins/select2/select2.js"></script>
+  <script src="/js/libs/raphael-2.1.2.min.js"></script>
+  <script src="/js/plugins/morris/morris.min.js"></script>
+  <script src="/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+  <script src="/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+
+  <!-- App JS -->
+  <script src="/js/target-admin.js"></script>
+  
+  <!-- Plugin JS -->
+  <script src="/js/demos/dashboard.js"></script>
+  <script src="/js/demos/charts/morris/area.js"></script>
+  <script src="/js/demos/charts/morris/donut.js"></script>
+  <script src="/js/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="/js/plugins/datatables/DT_bootstrap.js"></script>
+  <script src="/js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+  <script src="/js/plugins/icheck/jquery.icheck.min.js"></script>
+
+  
+
+
+  
+</body>
 </html>

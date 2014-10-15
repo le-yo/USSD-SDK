@@ -1,8 +1,8 @@
 <?php
 
-class Model_Surveyresponse extends Zend_Db_Table_Abstract {
+class Model_SurveyResponse extends Zend_Db_Table_Abstract {
 
-    protected $_name = "user_survey_response";
+    protected $_name = "surveyResponse";
     protected $_dbTable;
 
     //Get all articles belonging to this category
@@ -16,6 +16,27 @@ class Model_Surveyresponse extends Zend_Db_Table_Abstract {
 			$row['id'] = 0;
 			return $row; 
 		}else{
+			return $row;
+		}
+    }
+	
+	public function getUserResponse($user_id,$question_id) {
+	// $_name = "surveyResponse";
+		
+        $select = $this->select()
+				//->from('surveyResponse')
+                ->where('user_id=?', $user_id)
+				->where('survey_question_id=?', $question_id)
+				->order('id DESC');
+				
+				//print_r($select);
+				//exit;
+        $row = $this->fetchRow($select);
+		if (empty($row['response'])) {
+			$row['response'] = -1;
+			return $row; 
+		}else{
+			//$row['response']
 			return $row;
 		}
     }
@@ -56,45 +77,32 @@ class Model_Surveyresponse extends Zend_Db_Table_Abstract {
 
     
 
-    public function getCategories() {
+        public function getUserResponses($user_id,$survey_id) {
+    	
+		//print_r($id);
+		//exit;
+		
         $select = $this->select()
-                ->distinct()
-                ->from('cipelt_content', array('TE_categories', 'TE_category_slug'));
-        return $this->fetchAll($select);
+                ->where('survey_question_id=?', $id);
+        $result = $this->fetchAll($select)->toArray();
+		//print_r($result);
+		//exit;
+		
+		
+		
+		    $i = '1';
+    $options = "";
+    foreach ($result as $row) {
+    	
+		//print_r($row['option_text']);
+		//exit;
+        $options = $options.$i.":".$row['option_text']. PHP_EOL;
+		// if($row->is_correct_answer==1){
+			// $correctAnswer = $i;
+		// }
+        $i++;
     }
 
-
-    public function update_category_slug($slug, $category) {
-        $where = array('TE_categories=?' => $category);
-        $data = array('TE_category_slug' => $slug);
-        if ( $this->update($data, $where ,$this->_name )) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function getDbTable() {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('cipelt_content');
-        }
-
-        return $this->_dbTable;
-    }
-
-    public function setDbTable($dbTable) {
-//        if (is_string($dbTable)) {
-//            $dbTable = new $dbTable();
-//        }
-//        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-//            throw new Exception('Invalid table data gateway provided');
-//        }
-//        $this->_dbTable = $dbTable;
-//        return $this;
-    }
-    public function fetchCasualties(){
-		$select = $this->select();
-		return $this->fetchAll($select);
+		return $options;
 	}
-
 }

@@ -1,0 +1,178 @@
+<?php 
+ if($this->farmers){
+ 	$farmers = $this->farmers;
+ }
+?>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">SMS</h2>
+        <ol class="breadcrumb">
+          <li><a href="/hub">Home</a></li>
+          <li class="active">SMS</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-users"></i>
+                Farmers
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">           
+				<?php if($this->mid || $this->message ){?>
+					<div class="col-md-12">
+							<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+							  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							  <?php echo ucfirst($this->message);?>
+							</div>
+					</div>
+					<?php } ?>
+              <div class="table-responsive">
+
+              
+                  <?php if($this->messagesent==1){ 
+                  	?>
+               <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true">
+                  <thead>
+                    <tr>
+                      <th class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </th>
+                      <th data-filterable="" data-sortable="true">Name</th>
+                      <th data-filterable="" data-sortable="true">ID Number</th>
+                      <th data-filterable="" data-sortable="true">Gender</th>
+                      <th data-direction="" data-filterable="" >Phone Number</th>
+                      <th data-filterable="" data-sortable="true" >Language</th>
+                      <th data-filterable="" data-sortable="true" data-direction="desc">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <?php 
+                   foreach ($farmers as $farmer) {
+                       
+                   ?>
+                    <tr>
+                      <td class="checkbox-column">
+                        <input type="checkbox" checked="checked" class="icheck-input">
+                      </td>
+                      <td><?php if($farmer->names){ echo ucwords($farmer->names); }?></td>
+                      <td><?php if($farmer->idno){ echo $farmer->idno; }?></td>
+                      <td><?php if($farmer->gender){ echo ucfirst($farmer->gender); }?></td>
+                      <td><?php if($farmer->phoneno){ echo $farmer->phoneno; }?></td>
+                      <td>English <?php // if($farmer->language){ echo $farmer->language; }?></td>
+                      <td><span class="label label-success"><i class="fa fa-check-circle"></i> Sent</span> </td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+               </table>
+               
+                <?php }else{ ?>
+                 
+                <table 
+	                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+	                data-provide="datatable" 
+	                data-display-rows="10"
+	                data-info="true"
+	                data-search="true"
+	                data-length-change="true"
+	                data-paginate="true">
+                
+                   <thead>
+                    <tr>
+                      <th class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </th>
+                      <th data-filterable="" data-sortable="true">Name</th>
+                      <th data-filterable="" data-sortable="true">ID Number</th>
+                      <th data-filterable="" data-sortable="true">Gender</th>
+                      <th data-direction="" data-filterable="" >Phone Number</th>
+                      <th data-filterable="" data-sortable="true" >Language</th>
+                      <th data-filterable="" data-sortable="true" data-direction="desc">Date Registered</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	
+                 <?php 
+                   foreach ($farmers as $farmer) {
+                       
+                   ?>
+                   
+                    <tr>
+                      <td class="checkbox-column">
+                        <input type="checkbox" checked="checked" class="icheck-input">
+                      </td>
+                      <td><?php if($farmer->names){ echo ucwords($farmer->names); }?></td>
+                      <td><?php if($farmer->idno){ echo $farmer->idno; }?></td>
+                      <td><?php if($farmer->gender){ echo ucfirst($farmer->gender); }?></td>
+                      <td><?php if($farmer->phoneno){ echo $farmer->phoneno; }?></td>
+                      <td>English <?php // if($farmer->language){ echo $farmer->language; }?></td>
+                      <td><?php if($farmer->dateregistered){ echo $farmer->dateregistered; }?></td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+               </table>
+               <?php if($this->organization){?>
+               	<a href="/sms/submit-for-approval/guid/<?php if($this->guid){ echo $this->guid; }?>" class="btn btn-success">Submit for Approval</a>
+               	<?php }else{?>
+               <a href="#" class="btn btn-success" data-toggle="modal" data-target="#sendSMS">Send SMS</a>
+               		<?php } ?>
+               	<?php } ?>
+              </div> <!-- /.table-responsive -->
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        
+
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+      
+    </div> <!-- /.content-container -->
+    <div class="modal fade" id="sendSMS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Confirm SMS</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p><b>Message:</b> <?php if($this->messages){ echo ucfirst($this->messages->message); }?></p>
+			    </div>
+			 	<div class="modal-footer">
+			        <a href="/sms/select-recipients/guid/<?php if($this->guid){ echo $this->guid; }?>" class="btn btn-success" data-dismiss="modal">CANCEL</a>
+			        <a href="/sms/select-recipients/guid/<?php if($this->guid){ echo $this->guid; }?>/send/1" class="btn btn-warning">SEND SMS</a>
+			     </div>
+			 </div>
+		</div>
+	</div>
+
+      
+  </div> <!-- /.content -->
+
+</div> 

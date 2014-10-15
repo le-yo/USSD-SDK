@@ -1,0 +1,317 @@
+ <script type="text/javascript">
+$(function () {
+        $('#container').highcharts({
+			title: {
+                text: '',
+                x: -20 //center
+            },
+            
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'Messages Sent'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'sms'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'ACILD',
+                data: [0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0]
+            }, {
+                name: 'Agrovets',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }, {
+                name: 'Partners',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }]
+        });
+    });
+    
+
+		</script>
+	<script src="/js/libs/highcharts.js"></script> 
+	
+<div class="container">
+<div class="row">
+	 <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<br/><br/><br/><br/><br/>
+		<?php } ?>
+</div>
+  <div class="content">
+
+    <div class="content-container">
+      <div class="row">
+      	<div class="col-md-4 pull-right">
+        	<p class="nomargin tright">
+        		<a href="/sms/compose-sms" class="btn btn-success"><i class="fa fa-plus-circle"></i>  Create SMS</a>
+            	<a href="/farmers/create" class="btn btn-success"><i class="fa fa-plus-circle"></i>  Create Farmer</a>
+            </p>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+
+        <div class="col-sm-6 col-md-4">
+        <a class="nounderline" href="/sms/inbox">
+          <div class="row-stat">
+            <p class="row-stat-label">Messages exchanged </p>
+            <!--<h3 class="row-stat-value">$890.00</h3>-->
+            <span class="label label-success row-stat-badge"><?php if($this->messageCount){ echo $this->messageCount;}else { echo '0'; }?></span>
+          </div> <!-- /.row-stat -->
+          </a>
+        </div> <!-- /.col -->
+
+        <div class="col-sm-6 col-md-4">
+        <a class="nounderline" href="/farmers">
+          <div class="row-stat">
+            <p class="row-stat-label">Farmers registered</p>
+            <!--<h3 class="row-stat-value">$8290.00</h3>-->
+            <span class="label label-success row-stat-badge"><?php if($this->farmercount){ echo $this->farmercount;}else { echo '0'; }?></span>
+          </div> <!-- /.row-stat -->
+          </a>
+        </div> <!-- /.col -->
+
+        <div class="col-sm-6 col-md-4">
+        <a class="nounderline" href="/rewards">
+          <div class="row-stat">
+            <p class="row-stat-label">Farmers Rewarded</p>
+            <!--<h3 class="row-stat-value">98,290</h3>-->
+            <span class="label label-success row-stat-badge"><?php if($this->rewardCount){ echo $this->rewardCount;}else { echo '0'; }?></span>
+          </div> <!-- /.row-stat -->
+          </a>
+        </div> <!-- /.col -->
+
+        
+      </div> <!-- /.row -->
+
+
+      <br>
+
+
+
+      <div class="row">
+
+        <div class="col-md-8">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-envelope"></i>
+                Messages Sent 
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">
+              
+              <div class="clear"></div>
+
+              <hr />
+              <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div> <!-- /#area-chart -->
+              <div class="table-responsive hide">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Sent On</th>
+                      <th class="text-right" style="width: 100px">Messages</th>
+                      <th class="text-right" style="width: 100px">Cost</th>
+                      <th style="width: 130px"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>09/21/2013</td>
+                      <td class="text-right">54</td>
+                      <td class="text-right">Ksh108</td>
+                      <td class="text-center">
+                        <a href="javascript:;" class="btn btn-xs btn-secondary">View</a>
+                        <a href="javascript:;" class="btn btn-xs btn-default">Edit</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>09/21/2013</td>
+                      <td class="text-right">150</td>
+                      <td class="text-right">Ksh300</td>
+                      <td class="text-center">
+                        <a href="javascript:;" class="btn btn-xs btn-secondary">View</a>
+                        <a href="javascript:;" class="btn btn-xs btn-default">Edit</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>09/20/2013</td>
+                      <td class="text-right">400</td>
+                      <td class="text-right">Ksh800</td>
+                      <td class="text-center">
+                        <a href="javascript:;" class="btn btn-xs btn-secondary">View</a>
+                        <a href="javascript:;" class="btn btn-xs btn-default">Edit</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>09/19/2013</td>
+                      <td class="text-right">150</td>
+                      <td class="text-right">Ksh300</td>
+                      <td class="text-center">
+                        <a href="javascript:;" class="btn btn-xs btn-secondary">View</a>
+                        <a href="javascript:;" class="btn btn-xs btn-default">Edit</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>09/19/2013</td>
+                      <td class="text-right">210</td>
+                      <td class="text-right">Ksh420</td>
+                      <td class="text-center">
+                        <a href="javascript:;" class="btn btn-xs btn-secondary">View</a>
+                        <a href="javascript:;" class="btn btn-xs btn-default">Edit</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>09/19/2013</td>
+                      <td class="text-right">100</td>
+                      <td class="text-right">Ksh200</td>
+                      <td class="text-center">
+                        <a href="javascript:;" class="btn btn-xs btn-secondary">View</a>
+                        <a href="javascript:;" class="btn btn-xs btn-default">Edit</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> <!-- /.table-responsive -->
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        </div> <!-- /.col -->
+
+
+
+        <div class="col-md-4">
+			
+          <div class="portlet">
+
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-bar-chart-o"></i>
+                Data Summary
+              </h3>
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">
+
+              <div class="row row-marginless">
+
+                <?php if($this->partnerCount){ ?>
+                <div class="spark-stat col-md-6 col-sm-6 col-xs-6">
+
+                  <div id="total-visits">532, 338, 246, 149, 53, 48, 247, 56</div>
+                  <span class="spark-stat-value"><?php if($this->partnerCount){ echo $this->partnerCount;}else { echo '0'; }?></span>
+                  <h5 class="spark-stat-label">Total Partners</h5>
+
+                </div> <!-- /.col -->
+                <?php } ?>
+
+                <div class="spark-stat col-md-6 col-sm-6 col-xs-6">
+
+                  <div id="new-visits">32, 38, 46, 49, 53, 48, 47, 56</div>
+                  <span class="spark-stat-value"><?php if($this->messageCount){ echo $this->messageCount;}else { echo '0'; }?></span>
+                  <h5 class="spark-stat-label">Messages Exchanged</h5>
+
+                </div> <!-- /.col -->
+
+              </div> <!-- /.row -->
+
+
+              <div class="row row-marginless">
+
+                <div class="spark-stat col-md-6 col-sm-6 col-xs-6">
+
+                  <div id="unique-visits">32, 38, 46, 49, 53, 48, 47, 56</div>
+                  <span class="spark-stat-value"><?php if($this->farmercount){ echo $this->farmercount;}else { echo '0'; }?></span>
+                  <h5 class="spark-stat-label">Total Farmers</h5>
+
+                </div> <!-- /.col -->
+
+                <div class="spark-stat col-md-6 col-sm-6 col-xs-6">
+
+                  <div id="revenue-visits" data-bar-color="#c00">32, 38, 46, 49, 53, 48, 47, 56</div>
+                  <span class="spark-stat-value"><?php if($this->rewardCount){ echo $this->rewardCount;}else { echo '0'; }?></span>
+                  <h5 class="spark-stat-label">Total Rewards</h5>
+
+                </div> <!-- /.col -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet --> 
+          
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+      
+      
+    </div> <!-- /.content-container -->
+    
+    <div class="modal fade" id="approveSMS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Approve Message</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>All farmers meeting will be held at Eldoret Show ground on 12/11/2014 you are invited to attend.</p>
+			    </div>
+			 	<div class="modal-footer">
+			        <a class="btn btn-success" data-dismiss="modal">CANCEL</a>
+			        <a href="/dashboard.php" class="btn btn-warning">APPROVE SMS</a>
+			     </div>
+			 </div>
+		</div>
+	</div><!-- /.approveSMS Modal -->
+    <div class="modal fade" id="deleteSMS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Delete Message</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>All farmers meeting will be held at Eldoret Show ground on 12/11/2014 you are invited to attend.</p>
+			    </div>
+			 	<div class="modal-footer">
+			        <a class="btn btn-success" data-dismiss="modal">CANCEL</a>
+			        <a href="/dashboard.php" class="btn btn-warning">DELETE SMS</a>
+			     </div>
+			 </div>
+		</div>
+	</div><!-- /.approveSMS Modal -->
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->
+
+

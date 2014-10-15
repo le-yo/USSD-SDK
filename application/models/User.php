@@ -7,8 +7,11 @@ class Model_User extends Zend_Db_Table_Abstract {
 
     //Get all articles belonging to this category
     public function getUserWithPhone($no) {
+    	
+// print_r($no);
+// exit;
         $select = $this->select()
-                ->where('phone=?', $no);
+                ->where('phoneno=?', $no);
         $row = $this->fetchRow($select);
 		if (empty($row['id'])) {
 			$row['id'] = 0;
@@ -19,6 +22,23 @@ class Model_User extends Zend_Db_Table_Abstract {
     }
 	
 	//create user
+	
+	//getUserWithNationaID($message)
+	//Get all articles belonging to this category
+    public function getUserWithNationaID($national_id) {
+    	
+//print_r($national_id);
+//exit;
+        $select = $this->select()
+                ->where('idno=?', $national_id);
+        $row = $this->fetchRow($select);
+		if (empty($row['id'])) {
+			$row['id'] = 0;
+			return $row;
+		}else{
+			return $row;
+		}
+    }
 	
 	public function createUser($data) {
 		
@@ -41,18 +61,9 @@ class Model_User extends Zend_Db_Table_Abstract {
         
     }
 
-    
-
-    public function getCategories() {
-        $select = $this->select()
-                ->distinct()
-                ->from('cipelt_content', array('TE_categories', 'TE_category_slug'));
-        return $this->fetchAll($select);
-    }
-
 
     public function updateUser($progress, $phone) {
-        $where = array('phone=?' => $phone);
+        $where = array('phoneno=?' => $phone);
         $data = array('menu_item_id' => $progress);
         if ( $this->update($data, $where ,$this->_name )) {
             return true;
@@ -62,6 +73,8 @@ class Model_User extends Zend_Db_Table_Abstract {
     }
 	public function updateUserData($data, $id) {
         $where = array('id=?' => $id);
+		//print_r($data);
+		//exit;
        // $data = array('menu_item_id' => $progress);
         if ( $this->update($data, $where ,$this->_name )) {
             return true;
@@ -91,29 +104,6 @@ class Model_User extends Zend_Db_Table_Abstract {
         }
 		
 		
-	}
-
-    public function getDbTable() {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('cipelt_content');
-        }
-
-        return $this->_dbTable;
-    }
-
-    public function setDbTable($dbTable) {
-//        if (is_string($dbTable)) {
-//            $dbTable = new $dbTable();
-//        }
-//        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-//            throw new Exception('Invalid table data gateway provided');
-//        }
-//        $this->_dbTable = $dbTable;
-//        return $this;
-    }
-    public function fetchCasualties(){
-		$select = $this->select();
-		return $this->fetchAll($select);
 	}
 
 }

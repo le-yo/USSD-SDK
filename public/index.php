@@ -1,5 +1,4 @@
 <?php
-
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
@@ -17,16 +16,24 @@ set_include_path(implode(PATH_SEPARATOR, array(
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
-
-
-//hacks
-$frontController->setParam('useDefaultControllerAlways', true);
-$frontController->dispatch();
-//end of hacks
 // Create application, bootstrap, and run
 $application = new Zend_Application(
     APPLICATION_ENV,
     APPLICATION_PATH . '/configs/application.ini'
 );
+
+
+define("UPLOAD_DIR", realpath(dirname(__FILE__) . '/data/attachment'));
+define("UPLOAD_DIRVIEW", realpath(dirname(__FILE__) . '/data/attachment'));
+
+define('INFOEMAIL', 'info@acild.org');
+define('DOMAINNAME', 'acild.devs.mobi');
+define('FROMNAME', 'ACILD'); //for emails
+define('ACILDPHONENO', '0720606167'); //acild phone number
+define('ACILDUSSD', '*314*2012#'); //acild phone number
+
+
+
+
 $application->bootstrap()
             ->run();

@@ -14,7 +14,7 @@ class Model_MenuItems extends Zend_Db_Table_Abstract {
 		$i = 1;
    		$menuItems = array();
     	foreach ($result as $row) {
-        $menuItems[$i] = array( $row['id'],$row['description'],$row['next_menu_id'],$row['step'],$row['confirmation_phrase'] );
+        $menuItems[$i] = array( $row['id'],$row['description'],$row['next_menu_id'],$row['step'],$row['confirmation_phrase'],$row['type'] );
         $i++;
    		}
 		return $menuItems;

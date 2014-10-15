@@ -1,0 +1,89 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+	<?php 
+		if($this->guid){
+			
+		
+		?>
+      <!-- <div class="col-md-4 pull-right">
+        	<p class="nomargin tright"><a href="/partners/new-user/organization/<?php echo $this->guid; ?>" class="btn btn-success"><i class="fa fa-plus-circle"></i> Register User</a>
+            <a href="/partners/new-farmer/organization/<?php echo $this->guid; ?>" class="btn btn-success"><i class="fa fa-plus-circle"></i> Register Farmer</a></p>
+        </div> -->
+		<?php 
+			}
+		
+		?>
+      <div class="content-header">
+        <h2 class="content-header-title">View Content</h2>
+        <ol class="breadcrumb">
+          <li><a href="/hub">Home</a></li>
+          <li><a href="/content">Content</a></li>
+          <li>View</li>
+        </ol>
+      </div> <!-- /.content-header -->
+      <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+		
+		<?php 
+		if($this->content){
+			
+		
+		?>
+      <div class="col-md-12">
+      <div class="row">
+      	<div class="col-md-12">
+	        		<h1><?php echo $this->content->title ?></h1>
+	        		<br/>
+	        	</div>
+	        </div>
+	        <hr/>
+	        <div class="row">
+         <div class="col-md-6">
+	        <p><b>Created by:</b> <?php echo $this->content->dateentered ?></p>
+	    </div>
+	    <div class="col-md-6">
+	        <p><b>Date Created: </b><?php echo $this->getUserOrg($this->content->organization); ?></p>
+	    </div>
+	    
+       </div>
+       <hr/>
+        <div class="row">
+	        	
+	        	<div class="col-md-12">
+	        		<h4>Summary</h4>
+	        		<p><?php echo $this->content->summary ?></p>
+	        	</div>
+	        	<?php if($this->content->attachment){ ?>
+	        	<div class="col-md-12">
+	        		<hr/>
+	        		<h4>Attachment</h4>
+	        		<p><a href="/data/attachment<?php echo $this->content->attachment ?>" target="_blank"><?php echo $this->content->attachment ?></a> </p>
+	        		<a class="btn btn-success" href="/data/attachment<?php echo $this->content->attachment ?>" target="_blank"><i class="fa fa-cloud-download"></i> Download</a>
+	        		<hr/>
+	        	</div>
+	        	<?php }?>
+	        	
+	        	<div class="col-md-12">
+	        		<h4>Content</h4>
+	        		<p><?php echo $this->content->content ?></p>
+	        	</div>
+	        	
+        </div>
+        	
+        <!-- <a href="/players.php" class="btn btn-warning"><i class="fa fa-times"></i> Delete</a> -->
+       </div>
+        <?php } ?>
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div>

@@ -1,0 +1,64 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">New Content</h2>
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li><a href="/content">Content</a></li>
+          <li class="active">new</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+        <div class="col-md-8">
+        <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+        <form role="form" action="/content/new" method="POST" enctype="multipart/form-data">
+		  <div class="form-group">
+		    <label for="">Title</label>
+		    <input type="text" name="title" class="form-control"/>
+		  </div>
+		  <div class="form-group">
+		    <label for="">Summary</label>
+		    <textarea name="summary" rows="5" class="form-control"></textarea>
+		  </div>
+		  <div class="form-group">
+		    <label for="">Content</label>
+		    <textarea name="content" rows="20" class="form-control">Type here...</textarea>
+		  </div>
+		  <hr/>
+		   <div class="form-group">
+		    <label for="">Content</label>
+		    <input type="file" class="form-control" name="attachment" accept=".pdf,.jpg,.png,.gif,.doc,.docx,.xls,.xlsx">
+		  </div>
+		  
+		  
+		  
+		  <button type="submit" class="btn btn-success">Submit</button>
+		</form>
+        </div>
+        <div class="col-md-4">
+        <div class="list-group">  
+
+           
+          </div> <!-- /.list-group -->
+		</div><!--/.col-->
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

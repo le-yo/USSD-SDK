@@ -1,0 +1,105 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+	<?php 
+		if($this->guid){
+			
+		
+		?>
+      <div class="col-md-4 pull-right">
+        	<p class="nomargin tright"><a href="/partners/new-user/organization/<?php echo $this->guid; ?>" class="btn btn-success"><i class="fa fa-plus-circle"></i> Register User</a>
+            <a href="/partners/new-farmer/organization/<?php echo $this->guid; ?>" class="btn btn-success"><i class="fa fa-plus-circle"></i> Register Farmer</a></p>
+        </div>
+		<?php 
+			}
+		
+		?>
+      <div class="content-header">
+        <h2 class="content-header-title">
+        	<?php if($this->partner){?>
+		
+			<?php echo $this->partner->names?>
+		
+			<?php } ?>
+		
+        </h2>
+        <ol class="breadcrumb">
+          <li><a href="/hub">Home</a></li>
+          <li><a href="/partners">Partners</a></li>
+          <li>View</li>
+        </ol>
+      </div> <!-- /.content-header -->
+      <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+		
+		<?php 
+		if($this->partner){
+			
+		
+		?>
+      <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3">
+        	<h4>Players Name:</h4><p><?php echo $this->partner->names?></p>
+        </div>
+        <div class="col-md-3">
+        	<h4>Short Name:</h4><p><?php echo $this->partner->shortname ?></p>
+        </div>
+        <div class="col-md-3">
+	        <h4>Sector:</h4><p><?php echo $this->partner->sector ?></p>
+	    </div>
+       </div>
+        <div class="row">
+	        	<div class="col-md-3">
+	        		<h4>Phone Number:</h4><p><?php echo $this->partner->phoneno ?></p>
+	        	</div>
+	        	<div class="col-md-3">
+	        		<h4>Email:</h4><p><?php echo $this->partner->email ?></p>
+	        	</div>
+	        	<div class="col-md-3">
+	        		<h4>Location:</h4><p><?php echo $this->partner->county ?></p>
+	        	</div>
+        </div>
+        	<div class="row">
+	        	<div class="col-md-3">
+	        		<h4>Date Registered:</h4><p><?php echo $this->partner->dateregistered ?></p>
+	        	</div>
+        	</div>
+        <a href="/player-edit.php" class="btn btn-success"><i class="fa fa-pencil"></i> Edit Details</a>
+        <!-- <a href="/players.php" class="btn btn-warning"><i class="fa fa-times"></i> Delete</a> -->
+       </div>
+        <div class="col-md-4">
+        <!-- <div class="list-group">
+            <a href="/farmers-view.php" class="list-group-item"><h3 class="pull-right"><i class="fa fa-users"></i></h3>
+                  <h4 class="list-group-item-heading">0</h4>
+                  <p class="list-group-item-text">Registered Players</p>
+                  
+                </a>
+
+            <a href="/sent-sms.php" class="list-group-item"><h3 class="pull-right"><i class="fa fa-envelope"></i></h3>
+                  <h4 class="list-group-item-heading">0</h4>
+                  <p class="list-group-item-text">SMS sent</p>
+
+                </a>
+
+            <a href="/reward.php" class="list-group-item"><h3 class="pull-right"><i class="fa fa-thumbs-up"></i></h3>
+                  <h4 class="list-group-item-heading">0</h4>
+                  <p class="list-group-item-text">Rewards</p>
+
+                </a>
+          </div> -->
+        </div>
+        <?php } ?>
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div>

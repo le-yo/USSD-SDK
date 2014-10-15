@@ -1,0 +1,88 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Create Farmer</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="/farmers">Farmers</a></li>
+          <li class="active">new</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+        <div class="col-md-8">
+        <form class="form-horizontal" role="form" method="POST" action="/farmers/create">
+          <div class="form-group">
+            <label for="fname" class="col-sm-2 control-label">Full Names</label>
+            <div class="col-sm-6 col-md-8">
+              <input type="text" class="form-control" name="names" placeholder="Full names..">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lname" class="col-sm-2 control-label">ID No</label>
+            <div class="col-sm-6 col-md-8">
+              <input type="text" class="form-control" name="idno" id="lname" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+          <label for="lname" class="col-sm-2 control-label">Gender</label>
+          <label class="checkbox-inline">
+             <div class="col-sm-2">
+          	<input type="radio"  name="gender" value="male"> Male
+            </div>
+          </label>
+          <label class="checkbox-inline">
+          <div class="col-sm-2">
+          	<input type="radio"  name="gender" value="female"> Female
+          </div>
+          </label>
+          <label class="checkbox-inline">
+          <div class="col-sm-5">
+          	<input type="radio"  name="gender" value="other"> Unknown
+          </div>
+          </label>
+          </div>
+          <div class="form-group">
+            <label for="phonenumber" class="col-sm-2 control-label">Phone No.</label>
+            <div class="col-sm-6 col-md-8">
+              <input type="number" class="form-control" name="phoneno" placeholder="0720606167">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phonenumber" class="col-sm-2 control-label">County</label>
+            <div class="col-sm-6 col-md-8">
+              <input type="text" class="form-control" name="county" placeholder="E.g Nairobi">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phonenumber" class="col-sm-2 control-label">Ward</label>
+            <div class="col-sm-6 col-md-8">
+              <input type="text" class="form-control" name="ward">
+            </div>
+          </div>
+          <div class="form-group">
+      		<div class="col-sm-offset-2 col-sm-10">
+               <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </form>
+        </div>
+        <div class="col-md-4">
+        <div class="list-group">  
+
+           
+          </div> <!-- /.list-group -->
+		</div><!--/.col-->
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

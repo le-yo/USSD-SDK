@@ -1,0 +1,57 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">New User</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="/partners">Partner</a></li>
+          <li class="active">new user</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+        <div class="col-md-8">
+        <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+        <form role="form" action="/partners/new-user/organization/<?php if($this->organization){ echo $this->organization; }?>" method="POST">
+		  <div class="form-group">
+		    <label for="">Full names</label>
+		    <input type="text" name="names" class="form-control" id="" placeholder="Full names">
+		  </div>
+		  <div class="form-group">
+		    <label for="">Phone Number</label>
+		    <input type="text" name="phoneno" class="form-control" id="" placeholder="0720 000 000">
+		  </div>
+		  <div class="form-group">
+		    <label for="">Email address</label>
+		    <input type="email" name="email" class="form-control" id="" placeholder="Enter email">
+		  </div>
+		  <div class="form-group">
+		    <label for="">Confirm Email address</label>
+		    <input type="email" name="cemail" class="form-control" id="" placeholder="Confirm email">
+		  </div>
+		  <p><i><b>Note</b>: User will be notified via email on how to create a password to login</i></p>
+		  <button type="submit" class="btn btn-success">Submit</button>
+		</form>
+        </div>
+        <div class="col-md-4">
+		</div><!--/.col-->
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

@@ -1,0 +1,116 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+	<?php 
+		if($this->id){
+			
+		
+		?>
+      <!-- <div class="col-md-4 pull-right">
+        	<p class="nomargin tright"><a href="/partners/new-user/organization/<?php echo $this->guid; ?>" class="btn btn-success"><i class="fa fa-plus-circle"></i> Register User</a>
+            <a href="/partners/new-farmer/organization/<?php echo $this->guid; ?>" class="btn btn-success"><i class="fa fa-plus-circle"></i> Register Farmer</a></p>
+        </div> -->
+		<?php 
+			}
+		
+		?>
+      <div class="content-header">
+        <h2 class="content-header-title">View Content</h2>
+        <ol class="breadcrumb">
+          <li><a href="/hub">Home</a></li>
+          <li><a href="/improved-crops">Improved Crops</a></li>
+          <li>View</li>
+        </ol>
+      </div> <!-- /.content-header -->
+      <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+		
+		<?php 
+		if($this->improvedcrop){
+			
+		
+		?>
+	      <div class="row">
+		      <div class="col-md-12">
+				  <h1>Crop: <?php echo $this->improvedcrop->crop ?></h1>
+				  <br/>
+				  <p><b>Created by:</b> <?php echo $this->improvedcrop->daterecorded ?></p>
+			  </div>
+		  </div>
+		  <hr/>
+		  <div class="row">
+		      <div class="col-md-4">
+			  	<p><b>Variety:&nbsp;</b><?php echo $this->improvedcrop->variety ?></p>
+			  </div>
+			  <div class="col-md-4">
+			  	<p><b>Location:&nbsp;</b><?php echo $this->improvedcrop->location; ?></p>
+			  </div> 
+			  <div class="col-md-4">
+			  	<p><b>Food Value:&nbsp;</b> Ksh <?php echo $this->improvedcrop->foodvalue; ?></p>
+			  </div> 
+	      </div>
+	      <hr/>
+	      <div class="row">
+	      	<legend class="form-header-title">Planting</legend>
+			  <div class="col-md-6 pull-left">
+			  	<p><b>Source Of Seeds:&nbsp;</b><?php echo $this->improvedcrop->variety ?></p>
+				<p><b>Source of Fertiliser:&nbsp;</b><?php echo $this->improvedcrop->fertilisersource ?></p>
+				<p><b>Fertiliser:&nbsp;</b><?php echo $this->improvedcrop->fertiliser ?></p>
+			  </div>
+			  <div class="col-md-6 pull-right">
+			  	<p><b>Cost of Seed:&nbsp; </b>Ksh <?php echo $this->improvedcrop->seedcost ?></p>
+				<p><b>Cost of Fertiliser:&nbsp; </b>Ksh <?php echo $this->improvedcrop->fertilisercost ?></p>
+				<p><b>Fertiliser Rate:&nbsp;</b><?php echo $this->improvedcrop->fertiliserrate ?></p>
+				<p><b>Spacing:&nbsp;</b><?php echo $this->improvedcrop->spacing ?></p>
+			  </div>
+			  <legend class="form-header-title">Management</legend>
+			  <div class="col-md-6 pull-left">
+			  	<p><b>Weed:&nbsp;</b><?php echo $this->improvedcrop->weed ?></p>
+				<p><b>Diseases:&nbsp;</b><?php echo $this->improvedcrop->disease ?></p>
+				<p><b>Insects Pest:&nbsp;</b><?php echo $this->improvedcrop->insectpest ?></p>
+				<p><b>Top-Dress Fertiliser:&nbsp;</b><?php echo $this->improvedcrop->topdressfertiliser ?></p>
+			  </div>
+			  <div class="col-md-6 pull-right">
+			  	<p><b>Weed Control:&nbsp;</b><?php echo $this->improvedcrop->weedcontrol ?></p>
+				<p><b>Disease Control:&nbsp;</b><?php echo $this->improvedcrop->diseasecontrol ?></p>
+				<p><b>Pest Control:&nbsp;</b><?php echo $this->improvedcrop->pestcontrol ?></p>
+			  </div>
+			  <legend class="form-header-title">Harvesting</legend>
+			  <div class="col-md-6 pull-left">
+			  	<p><b>Timing:&nbsp;</b> <?php echo $this->improvedcrop->timing ?></p>
+			  </div>
+			  <legend class="form-header-title">Post-harvest management</legend>
+			  <div class="col-md-6 pull-left">
+			  	<p><b>Pest:&nbsp;</b><?php echo $this->improvedcrop->harvestpest ?></p>
+				<p><b>Disease:&nbsp;</b><?php echo $this->improvedcrop->harvestdisease ?></p>
+			  </div>
+			  <div class="col-md-6 pull-right">
+			  	<p><b>Pest Management:&nbsp;</b><?php echo $this->improvedcrop->pestmanagement ?></p>
+				<p><b>Disease Management:&nbsp;</b><?php echo $this->improvedcrop->diseasemanagement?></p>
+			  </div>
+			  <legend class="form-header-title">Surplus Marketing</legend>
+			  <div class="col-md-6 pull-left">
+			  	<p><b>Market:&nbsp;</b><?php echo $this->improvedcrop->market ?></p>
+			  </div>
+			  <div class="col-md-6 pull-right">
+			  	<p><b>Price:&nbsp;</b>Ksh <?php echo $this->improvedcrop->price ?></p>
+			  </div>
+	      </div>
+	        	
+	        <!-- <a href="" class="btn btn-success"><i class="fa fa-pencil"></i> Edit Content</a> -->
+	        <!-- <a href="/players.php" class="btn btn-warning"><i class="fa fa-times"></i> Delete</a> -->
+     
+        <?php } ?>
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div>

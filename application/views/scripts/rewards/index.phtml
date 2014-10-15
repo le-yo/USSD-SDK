@@ -1,0 +1,110 @@
+<?php 
+ if($this->farmers){
+ 	$farmers = $this->farmers;
+ }
+?>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Reward Farmers</h2>
+        <ol class="breadcrumb">
+          <li><a href="./index.html">Home</a></li>
+          <li class="active">Reward</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+
+        <div class="col-md-12">
+			<?php if($this->mid || $this->message ){?>
+					<div class="col-md-12">
+							<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+							  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							  <?php echo ucfirst($this->message);?>
+							</div>
+					</div>
+					<?php } ?>
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-table"></i>
+                Select Farmers To Reward
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true">
+                  <thead>
+                    <tr>
+                      <th class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </th>
+                      <th data-filterable="true" data-sortable="true" data-direction="desc">Name</th>
+                      
+                      <th data-direction="asc" data-filterable="true" data-sortable="true">Phone Number</th>
+                      <th data-filterable="true" data-sortable="true" data-direction="desc">Loyalty Points</th>
+                      <th data-sortable="true" class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	<?php 
+                  	foreach ($farmers as $farmer) {
+						  
+					  
+                  	?>
+                    <tr>
+                      <td class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </td>
+                      <td><?php if($farmer->names){ echo ucwords($farmer->names); }?></td>
+                      <td><?php if($farmer->phoneno){ echo $farmer->phoneno; }?></td>
+                      <td>334</td>
+                      <td class="text-center">
+                      <a href="/rewards/history/guid/<?php if($farmer->id){ echo ucwords($farmer->id); }?>" class="btn btn-xs btn-warning" title="Reward Farmer"><i class="fa fa-th-list"></i> History</a> <a href="/rewards/new/guid/<?php if($farmer->id){ echo ucwords($farmer->id); }?>" class="btn btn-xs btn-success" title="Reward Farmer"><i class="fa fa-thumbs-up"></i> Reward</a>
+                      </td>
+                    </tr>
+                    <?php 
+                  	}
+                  	?>
+                  </tbody>
+               </table>
+               
+              </div> <!-- /.table-responsive -->
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        
+
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+      
+    </div> <!-- /.content-container -->
+    
+
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container --> 

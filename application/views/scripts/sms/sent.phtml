@@ -1,0 +1,111 @@
+<?php 
+	
+?>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Sent SMS</h2>
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li><a href="/inbox">SMS</a></li>
+          <li class="active">Sent</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-suitcase"></i>
+                Sent Messages
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true">
+                  <thead>
+                    <tr>
+                      <th class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </th>
+                      
+                      <th data-filterable="true" data-sortable="true" data-direction="desc">MESSAGE</th>
+                      <th data-sortable="true">Farmers</th>
+                      <th class="hidden-xs hidden-sm">DATE SENT</th>
+                      <th data-filterable="false" class="text-center hidden-xs hidden-sm">ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <?php 
+                   if($this->sentsms){
+                   		
+                   	$sentsms = $this->sentsms;
+                   	
+                   	foreach ($sentsms as $sentsm) {
+						   
+                   
+                   ?>
+                    
+                    <tr>
+                      <td class="checkbox-column">
+                        <input type="checkbox" class="icheck-input">
+                      </td>
+                      <td><?php if($sentsm->message){ echo $sentsm->message; }else{ echo '<i>Blank Message</i>'; }?></td>
+                      <td  width="200px"><a href="/sms/viewrecipients/guid/<?php  if($sentsm->guid){ echo ($sentsm->guid); } ?>"><?php  if($sentsm->farmercount){ echo ($sentsm->farmercount); } ?> farmers</a> </td>
+                      <td  width="100px"><?php if($sentsm->datecomposed){ echo $sentsm->datecomposed; }?></td>
+                      <td  width="100px" class="text-center">
+                      <a href="/sms/reply/guid/<?php if($sentsm->status){ echo $sentsm->status; } ?>" class="btn btn-xs btn-success" > <i class="fa fa-tick"></i> Sent  </a> 
+                      &nbsp;
+                      &nbsp;
+                      </td>
+                    </tr>
+                    
+                    <?php 
+							} 
+						} ?>
+                    
+                  </tbody>
+                </table>
+               
+              </div> <!-- /.table-responsive -->
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        
+
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+      
+    </div> <!-- /.content-container -->
+    
+    
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

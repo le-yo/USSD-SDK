@@ -1,0 +1,105 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Reply to SMS</h2>
+        <ol class="breadcrumb">
+          <li><a href="/hub">Dashboard</a></li>
+          <li><a href="/sms">SMS</a></li>
+          <li class="active">Reply SMS</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      
+
+      <div class="row">
+	 <?php if($this->mid || $this->message ){?>
+			<div class="col-md-12">
+					<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					  <?php echo ucfirst($this->message);?>
+					</div>
+			</div>
+			<?php } ?>
+        <div class="col-md-6 col-sm-9">
+        	<p>Reference: <a href="/improved-crops" target="_blank">Improved Crop Technologies</a></p>
+        	<br/>
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-hand-o-up"></i>
+               Reply to SMS
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">
+			
+              <form class="form-horizontal" method="post" role="form" action="/sms/reply/guid/<?php if($this->id){ echo $this->id; }?>/id/<?php if($this->messageid){ echo $this->messageid; }?>">
+                      <?php 
+                      	if($this->farmer){
+                      		
+                      ?>
+                      <div class="form-group">
+                        <label for="farmersname" class="col-sm-3 control-label">Farmers Name:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p><?php echo $this->farmer->names; ?></p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="phoneNo" class="col-sm-3 control-label">Phone Number:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p></p>
+                          <p><?php echo $this->farmer->phoneno; ?></p>
+                        </div>
+          			  </div>
+                      <div class="form-group">
+                        <label for="idnumber" class="col-sm-3 control-label">ID Number:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <p><?php echo $this->farmer->idno; ?></p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="txtmessage" class="col-sm-3 control-label">Message:</label>
+                        <div class="col-sm-6 col-md-8">
+                          <textarea class="form-control" name="message" placeholder="Type your reply here" rows="5"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button type="submit" class="btn btn-success">Reply</button>
+                        </div>
+                      </div>
+                      <?php } ?>
+        		</form>
+        		
+              
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        </div><!-- /.col -->
+
+
+
+        
+
+
+      </div> <!-- /.row -->
+
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

@@ -1,0 +1,175 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">New Improved Crop Technologies</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="/improved-crops">Improved Crops</a></li>
+          <li class="active">new</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+        <div class="col-md-12">
+        <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+        <form role="form" action="/improved-crops/new" method="POST">
+          <div class="col-md-6 pull-left">
+			  <div class="form-group">
+			    <label for="">Location / Area</label>
+			    <input type="text" name="location" class="form-control" id="" placeholder="Location">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Crop</label>
+			    <input type="text" name="crop" class="form-control" id="" placeholder="e.g Maize">
+			  </div>
+		  </div>
+		  <div class="col-md-6 pull-right">
+			  <div class="form-group">
+			    <label for="">Variety</label>
+			    <input type="text" name="variety" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Food Value</label>
+			    <input type="text" name="foodvalue" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  <legend class="form-header-title">Planting</legend>
+		  <div class="col-md-6 pull-left">
+			  <div class="form-group">
+			    <label for="">Source of Seeds</label>
+			    <input type="text" name="seedssource" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Cost of Seed</label>
+			    <input type="text" name="seedcost" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Fertiliser</label>
+			    <input type="text" name="fertiliser" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Source of Fertiliser</label>
+			    <input type="text" name="fertilisersource" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  <div class="col-md-6 pull-right">
+			  <div class="form-group">
+			    <label for="">Cost of Fertiliser</label>
+			    <input type="text" name="fertilisercost" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Fertiliser Rate</label>
+			    <input type="text" name="fertiliserrate" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Spacing</label>
+			    <input type="text" name="fertiliserrate" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  <legend class="form-header-title">Management</legend>
+		  <div class="col-md-6 pull-left">
+			  <div class="form-group">
+			    <label for="">Weed</label>
+			    <input type="text" name="weed" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Diseases</label>
+			    <input type="text" name="disease" class="form-control" id="" placeholder="">			    
+			  </div>
+			   <div class="form-group">
+			    <label for="">Insect Pests</label>
+			    <input type="text" name="insectpest" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  <div class="col-md-6 pull-right">
+			  <div class="form-group">
+			    <label for="">Weed Control</label>
+			    <input type="text" name="weedcontrol" class="form-control" id="" placeholder="">			    
+			  </div>
+			  <div class="form-group">
+			  	<label for="">Disease Control</label>
+			    <input type="text" name="diseasecontrol" class="form-control" id="" placeholder="">			    
+			  </div>
+			  <div class="form-group">
+			  	<label for="">Pest Control</label>
+			    <input type="text" name="pestcontrol" class="form-control" id="" placeholder="">			    
+			  </div>
+			  <div class="form-group">
+			    <label for="">Top-Dress Fertiliser</label>
+			    <input type="text" name="topdressfertiliser" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  <legend class="form-header-title">Harvesting</legend>
+		  <div class="col-md-6 pull-left">
+			  <div class="form-group">
+			    <label for="">Timing</label>
+			    <input type="text" name="timing" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  <div class="col-md-6 pull-right">
+			  
+		  </div>
+		  <legend class="form-header-title">Post-harvest management</legend>
+		  <div class="col-md-6 pull-left">
+		  	<div class="form-group">
+			    <label for="">Pest</label>
+			    <input type="text" name="harvestpest" class="form-control" id="" placeholder="">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Disease</label>
+			    <input type="text" name="harvestdisease" class="form-control" id="" placeholder="">
+			  </div> 
+		  </div>
+		  <div class="col-md-6 pull-right">
+		  	<div class="form-group">
+			  	<label for="">Pest Management</label>
+			    <input type="text" name="pestmanagement" class="form-control" id="" placeholder="">			    
+			  </div>
+			  <div class="form-group">
+			    <label for="">Disease Management</label>
+			    <input type="text" name="harvestdisease" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>  
+		  <legend class="form-header-title">Surplus Marketing</legend>
+		  <div class="col-md-6 pull-left">
+			  <div class="form-group">
+			    <label for="">Market</label>
+			    <input type="text" name="market" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  <div class="col-md-6 pull-right">
+			  <div class="form-group">
+			    <label for="">Price</label>
+			    <input type="text" name="price" class="form-control" id="" placeholder="">
+			  </div>
+		  </div>
+		  
+		  <button type="submit" class="btn btn-success">Submit</button>
+		</form>
+        </div>
+        <div class="col-md-4">
+        <div class="list-group">  
+
+           
+          </div> <!-- /.list-group -->
+		</div><!--/.col-->
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

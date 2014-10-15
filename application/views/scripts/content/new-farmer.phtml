@@ -1,0 +1,77 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">New Partner</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="/partners">Partners</a></li>
+          <li class="active">new</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+        <div class="col-md-8">
+        <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+        <form role="form" action="/partners/new" method="POST">
+		  <div class="form-group">
+		    <label for="">Organization Name</label>
+		    <input type="text" name="names" class="form-control" id="" placeholder="Organization Name">
+		  </div>
+		  <div class="form-group">
+		    <label for="">Short Name (for SMS)</label>
+		    <input type="text" name="shortname" class="form-control" id="" placeholder="Short name">
+		  </div>
+		  <div class="form-group">
+		    <label for="">Sector</label>
+		    <select class="form-control" name="sector">
+			  <option value="">(Choose One)</option>
+			  <option value="livestock">Livestock</option>
+			  <option value="Food Crop">Food Crop</option>
+			  <option value="Research">Research</option>
+			  <option value="other">Other</option>
+			</select>
+		  </div>
+		  <div class="form-group">
+		    <label for="">Contact Phone Number</label>
+		    <input type="text" name="phoneno" class="form-control" id="" placeholder="0720 000 000">
+		    
+		  </div>
+		  <div class="form-group">
+		    <label for="">Contact Email address</label>
+		    <input type="email" name="email" class="form-control" id="" placeholder="Enter email">
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="">Location</label>
+		    <textarea class="form-control" name="location" rows="3"></textarea>
+		  </div>
+		  
+		  <button type="submit" class="btn btn-success">Submit</button>
+		</form>
+        </div>
+        <div class="col-md-4">
+        <div class="list-group">  
+
+           
+          </div> <!-- /.list-group -->
+		</div><!--/.col-->
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

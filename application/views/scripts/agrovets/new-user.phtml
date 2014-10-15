@@ -1,0 +1,59 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title"><?php if($this->orgdetails){ echo $this->orgdetails->names.': ' ; }?>New User</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="/agrovets">agrovet</a></li>
+          <li class="active">new user</li>
+        </ol>
+      </div> <!-- /.content-header -->
+
+      <div class="row">
+        <div class="col-md-8">
+        <?php if($this->mid || $this->message ){?>
+		<div class="col-md-12">
+				<div class="alert <?php if($this->mid==1){ echo "alert-danger";}else{ echo "alert-success"; }?> alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				  <?php echo ucfirst($this->message);?>
+				</div>
+		</div>
+		<?php } ?>
+		<h2><?php if($this->orgdetails){ echo $this->orgdetails->names; }?></h2>
+        <form role="form" action="/agrovets/new-user/organization/<?php if($this->organization){ echo $this->organization; }?>" method="POST">
+		  <div class="form-group">
+		    <label for="">Manager's names</label>
+		    <input type="text" name="names" class="form-control" id="" placeholder="Full names">
+		  </div>
+		  <div class="form-group">
+		    <label for="">ID No.</label>
+		    <input type="text" name="national_id" class="form-control">
+		  </div>
+		  <div class="form-group">
+		    <label for="">Phone Number</label>
+		    <input type="text" name="phoneno" class="form-control" id="" placeholder="0720 000 000">
+		  </div>
+		  <div class="form-group">
+		    <label for="">Email address(Optional)</label>
+		    <input type="email" name="email" class="form-control" id="" placeholder="Enter email">
+		  </div>
+		  
+		  <p><i><b>Note</b>: User will be notified via SMS about this account</i></p>
+		  <button type="submit" class="btn btn-success">Submit</button>
+		</form>
+        </div>
+        <div class="col-md-4">
+		</div><!--/.col-->
+       </div><!--/.row-->
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->

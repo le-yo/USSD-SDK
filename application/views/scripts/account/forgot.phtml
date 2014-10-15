@@ -1,0 +1,47 @@
+<hr class="account-header-divider">
+
+<div class="account-wrapper">
+
+  <!-- <div class="account-logo">
+    <img src="./img/logo-login.png" alt="Target Admin">
+  </div> -->
+  <br/><br/>
+
+    <div class="account-body">
+
+      <h3 class="account-body-title">Reset Password</h3>
+
+      <h5 class="account-body-subtitle">Provide your email to reset your password</h5>
+      <?php 
+        if($this->message){?>
+         <div class="formheader">
+            <div class="alert alert-danger">
+                <p><?php echo $this->message;?></p>
+            </div>
+        </div>
+        <?php    
+           }
+        ?>
+
+      <form class="form account-form" method="POST" action="/account/forgot">
+
+        <div class="form-group">
+          <label for="login-username" class="placeholder-hidden">Email</label>
+          <input type="text" class="form-control" name="email" id="login-username" placeholder="Email" tabindex="1">
+
+        </div> <!-- /.form-group -->
+
+        
+        <div class="form-group">
+          <button class="btn holo-info btn-block btn-lg"  >
+            Submit &nbsp; <i class="fa fa-play-circle"></i>
+          </button>
+        </div> <!-- /.form-group -->
+
+      </form>
+
+
+    </div> <!-- /.account-body -->
+
+   
+  </div> <!-- /.account-wrapper -->

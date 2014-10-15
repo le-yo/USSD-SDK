@@ -1,0 +1,247 @@
+<?php 
+ if($this->surveyid){
+ 	$surveyid = $this->surveyid;
+ }
+ if($this->surveyQuestions){
+ 	$surveyQuestions = $this->surveyQuestions;
+ }
+ if($this->surveyQuestions){
+ 	$surveyQuestions = $this->surveyQuestions;
+ }
+ if($this->surveyQuestions){
+ 	$surveyQuestions = $this->surveyQuestions;
+ }
+ if($this->surveydetails){
+ 	$surveydetails = $this->surveydetails;
+ }
+?><div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title">Add questions to survey</h2>
+        <ol class="breadcrumb">
+          <li><a href="/hub">Dashboard</a></li>
+          <li><a href="/Surveyweb">Survey</a></li>
+          <li class="active">Add questions to Survey</li>
+        </ol>
+      </div> <!-- /.content-header -->
+    <div class="content-container">
+
+      
+<?php
+
+if (count($surveyQuestions)>0) {
+	
+?>
+     
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-suitcase"></i>
+                Survey Questions
+              </h3>
+			 
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true">
+                  <thead>
+                    <tr>
+                      
+                   	<th data-filterable="false" data-sortable="true" data-direction="desc">No:</th>
+                   
+                      <th data-filterable="true" data-sortable="true" data-direction="desc">Question</th>
+                      <!-- <th data-filterable="true" data-sortable="true" data-direction="desc">Choices</th>
+                       -->
+                      <th data-filterable="false" data-sortable="true" data-direction="desc">Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  	
+                  	<?php
+                  	
+                  	$i = 1;
+                  	 foreach ($surveyQuestions as $key => $value) { ?>
+                  		
+                  	<tr>
+                      
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $value->question; ?></td>
+                      <!-- <td><?php echo $value->question; ?></td>
+                      <td>9022014</td> -->
+                      <td class="text-center">
+                      <a href="/survey-view.php" class="btn btn-xs btn-success" data-placement="top" title="View"><i class="fa fa-eye"></i></a> 
+                      &nbsp;
+                      <a  href="/survey-edit.php" class="btn btn-xs btn-success" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
+                      &nbsp;
+                      <a href="#" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#deleteSurvey" data-placement="top" title="Delete"><i class="fa fa-times"></i></a>
+                      </td>
+                    </tr>
+						  
+					 <?php } ?>
+                    
+                    
+                    
+                    
+                  </tbody>
+                </table>
+               <!--<a href="#" class="btn btn-success" data-toggle="modal" data-target="#deleteSurvey">Delete Survey</a>-->
+               
+              </div> <!-- /.table-responsive -->
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        
+
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+      
+    </div>
+    
+    <?php
+    }
+    ?>
+      
+
+      <div class="row">
+
+        <div class="col-md-8 col-sm-9">
+
+          <div class="portlet">
+
+            <div class="portlet-header">
+
+              <h3>
+                <i class="fa fa-hand-o-up"></i>
+               Add questions to Survey
+              </h3>
+
+            </div> <!-- /.portlet-header -->
+
+            <div class="portlet-content">
+            	
+            	
+
+
+<form class="form-horizontal" role="form" method="POST" action="/surveyweb/addquestions">
+	<input type="hidden" class="form-control" id="question" name="surveyid" value="<?php echo $surveyid; ?>">
+                   
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                     <h4>SURVEY TITLE: <?php echo $surveydetails->shortname; ?> </h4>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="question" class="col-sm-2 control-label">Question</label>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="text" class="form-control" id="question" name="question" placeholder="What is your knowledge of the _______ Project?">
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label for="inputch1" class="col-sm-2 control-label">1.</label>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="text" class="form-control" id="ch1" name="option[1]" placeholder="poor">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputch2" class="col-sm-2 control-label">2.</label>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="text" class="form-control" id="ch2" name="option[2]" placeholder="Fair">
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label for="inputch3" class="col-sm-2 control-label">3.</label>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="text" class="form-control" name="option[3]" id="ch3" placeholder="Good">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputch4" class="col-sm-2 control-label">4.</label>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="text" class="form-control" name="option[4]" id="ch4" placeholder="Very Good">
+                    </div>
+                  </div> 
+                  <div class="form-group">
+                    <label for="inputch5" class="col-sm-2 control-label">5.</label>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="text" class="form-control" name="option[5]" id="ch5" placeholder="Excellent">
+                    </div>
+                  </div>               
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" name="button" value="1" class="btn btn-success">Submit &amp; Create Question</button>
+                    <button type="submit" name="button" value="2" class="btn btn-success">Submit and finish</button>
+                  
+                      <!-- <a href="/survey-create-questions.php" class="btn btn-success">Submit &amp; Create Question</a>
+           			  <a href="/survey-contact-list.php" class="btn btn-success">Finish &amp; Select Contacts</a>
+                     --></div>
+                  </div>
+              </form>
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        </div><!-- /.col -->
+	
+	<div class="col-md-4 col-sm-3">
+		<!-- Real estate for the future -->
+		<h4 class="content-header-title">Sample Questions</h4>
+       	   <h4>What is your average monthly income</h4>
+           <ul class="choices">
+              <li>0 - 10000</li>
+              <li>10000 - 20000</li>
+              <li>20000 - 50000</li>
+              <li>Above 50000</li>
+           </ul>
+           <h4>Between Which month is your income high</h4>
+           <ul class="choices">
+              <li>January - February</li>
+              <li>March - May</li>
+              <li>June - August</li>
+              <li>September - December</li>
+           </ul>
+           <br/>
+           
+	</div>
+
+
+        
+
+
+      </div> <!-- /.row -->
+
+
+    </div> <!-- /.content-container -->
+      
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->
